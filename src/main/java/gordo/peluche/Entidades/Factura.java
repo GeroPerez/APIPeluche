@@ -14,4 +14,6 @@ public class Factura {
     private float subtotal;
     private float total;
 
+    @OneToOne(mappedBy = "factura")
+    private Compra compra;
 }
