@@ -1,15 +1,31 @@
 package gordo.peluche.Entidades;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-public class compra {
+public class Compra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int idcli;
-    private List<Peluche> peluches;
     private int iva;
     private float subtotal;
     private float total;
 
+    @ManyToMany
+    @JoinTable(name = "compra_productos", joinColumns = @JoinColumn(name = "compra_id"), inverseJoinColumns = @JoinColumn(name = "producto_id"))
+    private List<Producto> productos;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Cliente_id")
+    private List<Cliente> clientes;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "factura_id", referencedColumnName = "id")
+    private Factura factura;
+
+
+    public Compra() {
+    }
 }
