@@ -1,4 +1,5 @@
 package gordo.peluche.Entidades;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -12,10 +13,25 @@ public class Producto {
     private int stock;
 
     public Producto(Long id, String nombre, float precio, int stock) {
+    @ManyToMany(mappedBy = "productos")
+    private List<Compra>compra;
+
+    public Producto(Long id, String nombre, float precio, int stock, List<Compra> compra) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.compra = compra;
+    }
+
+    public Producto(){    
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -41,8 +57,15 @@ public class Producto {
     public void setStock(int stock) {
         this.stock = stock;
     }
-    
-    
+
+    public List<Compra> getCompra() {
+        return compra;
+    }
+
+    public void setCompra(List<Compra> compra) {
+        this.compra = compra;
+    }
+
     
 
 }
