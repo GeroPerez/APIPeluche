@@ -12,6 +12,7 @@ public class Producto {
     private float precio;
     private int stock;
 
+    public Producto(Long id, String nombre, float precio, int stock) {
     @ManyToMany(mappedBy = "productos")
     private List<Compra>compra;
 
