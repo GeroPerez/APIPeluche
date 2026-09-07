@@ -2,7 +2,6 @@ package gordo.peluche.Entidades;
 import jakarta.persistence.*;
 
 
-
 @Entity
 public class compra {
     @Id
@@ -13,5 +12,8 @@ public class compra {
     private int iva;
     private float subtotal;
     private float total;
+
+    
+
 
 }
