@@ -1,5 +1,10 @@
 package gordo.peluche.Repository;
 
-public interface ClienteRepository {
+import gordo.peluche.Entidades.Cliente;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
 }
