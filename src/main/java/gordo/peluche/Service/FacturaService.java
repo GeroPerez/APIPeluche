@@ -3,7 +3,7 @@ package gordo.peluche.Service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import gordo.peluche.IService.ClienteIService;
+import gordo.peluche.IService.FacturaIService;
 import gordo.peluche.Entidades.Factura;
 import gordo.peluche.Repository.FacturaRepository;
 

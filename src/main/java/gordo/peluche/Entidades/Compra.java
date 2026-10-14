@@ -19,20 +19,20 @@ public class Compra {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Cliente_id")
-    private List<Cliente> clientes;
+    private Cliente cliente;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "factura_id", referencedColumnName = "id")
     private Factura factura;
 
-    public Compra(Long id, int iva, float subtotal, float total, List<Producto> productos, List<Cliente> clientes,
+    public Compra(Long id, int iva, float subtotal, float total, List<Producto> productos, Cliente cliente,
             Factura factura) {
         this.id = id;
         this.iva = iva;
         this.subtotal = subtotal;
         this.total = total;
         this.productos = productos;
-        this.clientes = clientes;
+        this.cliente = cliente;
         this.factura = factura;
     }
 
@@ -79,12 +79,12 @@ public class Compra {
         this.productos = productos;
     }
 
-    public List<Cliente> getClientes() {
-        return clientes;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Factura getFactura() {

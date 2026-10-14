@@ -16,7 +16,7 @@ public class Cliente {
     private String direccion;
     private int cuit;
 
-    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Compra> compras;
 
     public Cliente(Long id, String nombre, String apellido, String correo, String contrasena, String direccion,
