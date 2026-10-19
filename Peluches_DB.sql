@@ -1,3 +1,5 @@
+USE peluche;
+
 INSERT INTO Cliente (nombre, apellido, correo, contrasena, direccion, cuit) VALUES
 ('Juan', 'Pérez', 'juan.perez@mail.com', 'Peluche#2026a', 'Av. San Martín 1234, Mendoza', '20-28456731-4'),
 ('María', 'González', 'maria.gonzalez@mail.com', 'Peluche#2026b', 'Calle Belgrano 567, Godoy Cruz', '27-30123456-8'),
