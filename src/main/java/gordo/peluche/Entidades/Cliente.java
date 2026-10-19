@@ -14,13 +14,13 @@ public class Cliente {
     private String correo;
     private String contrasena;
     private String direccion;
-    private int cuit;
+    private String cuit;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Compra> compras;
 
     public Cliente(Long id, String nombre, String apellido, String correo, String contrasena, String direccion,
-            int cuit, List<Compra> compras) {
+            String cuit, List<Compra> compras) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -82,11 +82,11 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public int getCuit() {
+    public String getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(String cuit) {
         this.cuit = cuit;
     }
 
