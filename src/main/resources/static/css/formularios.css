@@ -1,0 +1,105 @@
+/* ========================================== */
+/* Formularios y Secciones de Datos           */
+/* ========================================== */
+.contenedor-formulario {
+    background-color: var(--color-fondo-tarjeta);
+    border-radius: var(--borde-redondeado);
+    box-shadow: var(--sombra-suave);
+    border: 1px solid var(--color-borde);
+    padding: 2.5rem;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.formulario-registro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.etiqueta-campo {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-texto);
+}
+
+.entrada-campo {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #fafbfc;
+    transition: var(--transicion);
+}
+
+.entrada-campo:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(255, 133, 162, 0.2);
+}
+
+/* ========================================== */
+/* Diseno de Dos Columnas                     */
+/* ========================================== */
+.fila-doble {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* ========================================== */
+/* Resumen de Compra y Factura                */
+/* ========================================== */
+.caja-resumen {
+    background-color: #ffffff;
+    border-radius: var(--borde-redondeado);
+    box-shadow: var(--sombra-suave);
+    border: 1px solid var(--color-borde);
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.linea-resumen {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed var(--color-borde);
+}
+
+.linea-resumen.total {
+    border-bottom: none;
+    border-top: 2px solid var(--color-primario);
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-primario-oscuro);
+}
+
+.texto-etiqueta {
+    color: var(--color-texto-suave);
+    font-weight: 500;
+}
+
+.texto-valor {
+    color: var(--color-texto);
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .fila-doble {
+        grid-template-columns: 1fr;
+    }
+
+    .contenedor-formulario {
+        padding: 1.5rem;
+    }
+}

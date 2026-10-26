@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Peluches - Registro de Cliente</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/formularios.css">
+</head>
+<body>
+    <header class="cabecera">
+        <div class="contenedor-navegacion">
+            <a href="index.html" class="logotipo">Pelucheria Magica</a>
+            <nav>
+                <ul class="menu-navegacion">
+                    <li><a href="index.html" class="enlace-navegacion">Catalogo</a></li>
+                    <li><a href="clientes.html" class="enlace-navegacion activo">Registro Clientes</a></li>
+                    <li><a href="compras.html" class="enlace-navegacion">Detalle de Compra</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+        <div class="encabezado-seccion">
+            <h1 class="titulo-seccion">Registro de Clientes</h1>
+            <p class="descripcion-seccion">Completa tus datos para realizar pedidos de peluches</p>
+        </div>
+
+        <section class="contenedor-formulario">
+            <form class="formulario-registro" action="#" method="post">
+                <div class="fila-doble">
+                    <div class="grupo-campo">
+                        <label class="etiqueta-campo" for="nombre">Nombre</label>
+                        <input class="entrada-campo" type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label class="etiqueta-campo" for="apellido">Apellido</label>
+                        <input class="entrada-campo" type="text" id="apellido" name="apellido" placeholder="Ingresa tu apellido" required>
+                    </div>
+                </div>
+
+                <div class="grupo-campo">
+                    <label class="etiqueta-campo" for="correo">Correo Electronico</label>
+                    <input class="entrada-campo" type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label class="etiqueta-campo" for="contrasena">Contrasena</label>
+                    <input class="entrada-campo" type="password" id="contrasena" name="contrasena" placeholder="Minimo 8 caracteres" required>
+                </div>
+
+                <div class="fila-doble">
+                    <div class="grupo-campo">
+                        <label class="etiqueta-campo" for="direccion">Direccion</label>
+                        <input class="entrada-campo" type="text" id="direccion" name="direccion" placeholder="Calle y numero" required>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label class="etiqueta-campo" for="cuit">CUIT</label>
+                        <input class="entrada-campo" type="number" id="cuit" name="cuit" placeholder="Sin guiones" required>
+                    </div>
+                </div>
+
+                <button class="boton-accion" type="submit">Guardar Cliente</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="pie-pagina">
+        <div class="contenedor-pie">
+            <p class="texto-pie">&copy; 2026 Pelucheria Magica. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
