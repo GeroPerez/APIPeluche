@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Peluches - Pelucheria Oficial</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+
+  <header class="barra-navegacion" id="barra-navegacion">
+    <div class="contenedor-navegacion">
+      <a href="#" class="logotipo" id="logotipo">
+        <span class="icono-logo">🧸</span>
+        <span>Pelucheria</span>
+      </a>
+      <ul class="enlaces-navegacion">
+        <li><a href="#seccion-catalogo" class="enlace-navegacion">Catálogo</a></li>
+        <li><a href="#seccion-registro" class="enlace-navegacion">Registro</a></li>
+        <li><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Facturas</a></li>
+        <li>
+          <button class="boton-admin-nav" id="boton-abrir-admin" title="Panel de Administracion">
+            <span>⚙️</span>
+            <span>Admin</span>
+          </button>
+        </li>
+        <li>
+          <button class="boton-carrito-nav" id="boton-abrir-carrito">
+            <span>🛒</span>
+            <span>Carrito</span>
+            <span class="contador-carrito" id="contador-carrito">0</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion-portada" id="portada-destacada">
+      <div class="contenido-portada">
+        <span class="insignia-portada">Peluches Suaves y Adorables</span>
+        <h1 class="titulo-portada">Encuentra a tu nuevo <span class="titulo-destacado">amigo esponjoso</span></h1>
+        <p class="descripcion-portada">Explora nuestra coleccion exclusiva de peluches artesanales de alta calidad, listos para abrazar y regalar momentos inolvidables.</p>
+        <div class="acciones-portada">
+          <a href="#seccion-catalogo" class="boton-accion-principal">Explorar Catálogo</a>
+          <a href="#seccion-registro" class="boton-accion-secundaria">Crear Cuenta</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion-cliente-activo">
+      <div class="caja-cliente-activo">
+        <div class="info-cliente-actual">
+          <div class="icono-avatar">👤</div>
+          <div>
+            <div class="titulo-cliente-activo">Cliente en sesion:</div>
+            <div class="nombre-cliente-activo" id="etiqueta-cliente-activo">Invitado (Sin registrar)</div>
+          </div>
+        </div>
+        <div class="selector-cliente-contenedor">
+          <label for="selector-cliente" class="etiqueta-formulario">Seleccionar cliente registrado:</label>
+          <select id="selector-cliente" class="selector-cliente">
+            <option value="">-- Cargar cliente existente --</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion-catalogo" id="seccion-catalogo">
+      <div class="cabecera-seccion">
+        <div>
+          <h2 class="titulo-seccion">Catálogo de Peluches</h2>
+          <p class="subtitulo-seccion">Disponibilidad en tiempo real sincronizada con la base de datos</p>
+        </div>
+        <div class="barra-filtros">
+          <input type="text" id="campo-busqueda" class="campo-busqueda" placeholder="Buscar peluche...">
+        </div>
+      </div>
+
+      <div id="estado-carga" class="cargando-contenedor">
+        <div class="spinner-cargando"></div>
+        <p>Cargando catálogo de peluches...</p>
+      </div>
+
+      <div id="mensaje-error-conexion" class="caja-error-conexion" style="display: none;">
+        <h3>No se pudo conectar con el servidor</h3>
+        <p id="texto-error-conexion">Verifica que el servicio backend este activo en http://localhost:8080</p>
+        <button id="boton-reintentar-catalogo" class="boton-reintentar">Reintentar Conexion</button>
+      </div>
+
+      <div class="contenedor-catalogo" id="contenedor-catalogo">
+        <div class="contenedor-productos" id="contenedor-productos"></div>
+      </div>
+    </section>
+
+    <section class="seccion-registro" id="seccion-registro">
+      <div class="contenedor-formulario-registro">
+        <div class="formulario-cabecera">
+          <h2 class="titulo-seccion">Registro de Clientes</h2>
+          <p class="subtitulo-seccion">Registrate para realizar tus compras y recibir tus facturas</p>
+        </div>
+        <form id="formulario-registro" class="formulario-registro">
+          <div class="formulario-grid">
+            <div class="grupo-formulario">
+              <label for="nombre-cliente" class="etiqueta-formulario">Nombre</label>
+              <input type="text" id="nombre-cliente" class="campo-formulario" placeholder="Ej: Maria" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="apellido-cliente" class="etiqueta-formulario">Apellido</label>
+              <input type="text" id="apellido-cliente" class="campo-formulario" placeholder="Ej: Perez" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="correo-cliente" class="etiqueta-formulario">Correo Electronico</label>
+              <input type="email" id="correo-cliente" class="campo-formulario" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="contrasena-cliente" class="etiqueta-formulario">Contraseña</label>
+              <input type="password" id="contrasena-cliente" class="campo-formulario" placeholder="Minimo 6 caracteres" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="cuit-cliente" class="etiqueta-formulario">CUIT / Documento</label>
+              <input type="text" id="cuit-cliente" class="campo-formulario" placeholder="Ej: 20-30123456-8" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="direccion-cliente" class="etiqueta-formulario">Direccion de Envio</label>
+              <input type="text" id="direccion-cliente" class="campo-formulario" placeholder="Ej: Av. San Martin 123" required>
+            </div>
+            <div class="grupo-formulario grupo-formulario-completo">
+              <button type="submit" id="boton-registro" class="boton-registro">Registrar Nuevo Cliente</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-superposicion" id="modal-carrito">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Carrito de Compras</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-carrito">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-carrito" class="lista-carrito"></div>
+      </div>
+      <div class="pie-modal-carrito">
+        <div class="resumen-totales-compra">
+          <div class="fila-resumen">
+            <span>Cliente activo:</span>
+            <span id="cliente-resumen-compra">Sin seleccionar</span>
+          </div>
+          <div class="fila-resumen">
+            <span>Subtotal:</span>
+            <span id="subtotal-compra">$0.00</span>
+          </div>
+          <div class="fila-resumen">
+            <span>IVA (21%):</span>
+            <span id="iva-compra">$0.00</span>
+          </div>
+          <div class="fila-resumen fila-total">
+            <span>Total Final:</span>
+            <span id="total-compra" class="monto-total-destacado">$0.00</span>
+          </div>
+        </div>
+        <button id="boton-procesar-compra" class="boton-procesar-compra" disabled>Procesar Orden de Compra</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-factura">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Comprobante de Factura</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-factura">&times;</button>
+      </div>
+      <div class="cuerpo-modal" id="cuerpo-factura">
+        <div class="caja-factura-detalle" id="detalle-factura"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-historial">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Historial de Facturas Emitidas</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-historial">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-historial" class="lista-carrito"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-admin">
+    <div class="modal-contenedor modal-contenedor-ancho">
+      <div class="cabecera-modal">
+        <div>
+          <h3 class="titulo-modal">Panel de Administracion - Inventario</h3>
+          <p class="subtitulo-seccion">Renueva el stock de cada peluche o incorpora nuevos modelos a MySQL</p>
+        </div>
+        <button class="boton-cerrar-modal" id="boton-cerrar-admin">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div class="barra-acciones-admin">
+          <input type="text" id="campo-busqueda-admin" class="campo-busqueda" placeholder="Buscar en inventario...">
+          <button id="boton-reabastecer-todo" class="boton-accion-secundaria">Reabastecer Todo (+10 uds)</button>
+          <button id="boton-alternar-nuevo-peluche" class="boton-accion-principal">+ Nuevo Peluche</button>
+        </div>
+
+        <div id="caja-nuevo-peluche" class="caja-formulario-admin" style="display: none;">
+          <h4 style="margin-bottom: 0.8rem; font-size: 1.05rem;">Registrar Nuevo Peluche en Catalogo</h4>
+          <form id="formulario-nuevo-peluche" class="formulario-grid">
+            <div class="grupo-formulario">
+              <label for="nombre-nuevo-peluche" class="etiqueta-formulario">Nombre del Peluche</label>
+              <input type="text" id="nombre-nuevo-peluche" class="campo-formulario" placeholder="Ej: Oso Polar Esponjoso" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="precio-nuevo-peluche" class="etiqueta-formulario">Precio ($)</label>
+              <input type="number" id="precio-nuevo-peluche" class="campo-formulario" step="0.01" min="1" placeholder="Ej: 19500" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="stock-nuevo-peluche" class="etiqueta-formulario">Stock Inicial</label>
+              <input type="number" id="stock-nuevo-peluche" class="campo-formulario" min="1" placeholder="Ej: 20" required>
+            </div>
+            <div class="grupo-formulario" style="justify-content: flex-end;">
+              <button type="submit" id="boton-guardar-nuevo-peluche" class="boton-registro" style="margin-top: 0;">Guardar en Base de Datos</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="contenedor-tabla-admin">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Peluche</th>
+                <th>Precio</th>
+                <th>Stock Actual</th>
+                <th>Modificar Unidades</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-tabla-admin"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
+
+  <footer class="pie-pagina" id="pie-pagina">
+    <div class="contenido-pie-pagina">
+      <p>Pelucheria Oficial - Sistema de Gestion y Venta de Peluches</p>
+      <p>Conectado a API REST Spring Boot y MySQL</p>
+    </div>
+  </footer>
+
+</body>
+</html>

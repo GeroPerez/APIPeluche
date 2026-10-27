@@ -2,7 +2,8 @@ package gordo.peluche.Entidades;
 import java.util.List;
 
 import jakarta.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;                                                                      
+                                                                                                                             
 @Entity
 public class Producto {
     @Id
@@ -13,6 +14,7 @@ public class Producto {
     private int stock;
 
     @ManyToMany(mappedBy = "productos")
+    @JsonIgnore 
     private List<Compra>compra;
 
     public Producto(Long id, String nombre, float precio, int stock, List<Compra> compra) {
