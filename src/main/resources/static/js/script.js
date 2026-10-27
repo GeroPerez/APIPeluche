@@ -234,13 +234,26 @@ function cerrarSesion() {
   carrito = [];
   actualizarCarrito();
   mostrarNotificacion('Has cerrado sesion correctamente', 'exito');
+  const rutaActual = window.location.pathname.toLowerCase();
+  if (rutaActual.includes('admin.html')) {
+    window.location.href = 'index.html';
+  }
 }
 
 function actualizarInterfazSegunRol() {
+  const rutaActual = window.location.pathname.toLowerCase();
+  const esPaginaAdmin = rutaActual.includes('admin.html');
+
+  if (esPaginaAdmin && !esModoAdministrador) {
+    window.location.href = 'auth.html';
+    return;
+  }
+
   const navItemCatalogo = document.getElementById('nav-item-catalogo');
   const navItemLogin = document.getElementById('nav-item-login');
   const navItemRegistro = document.getElementById('nav-item-registro');
   const navItemFacturas = document.getElementById('nav-item-facturas');
+  const navItemAdminEnlace = document.getElementById('nav-item-admin-enlace');
   const navItemCarrito = document.getElementById('nav-item-carrito');
   const navItemUsuario = document.getElementById('nav-item-usuario');
   const textoUsuarioNav = document.getElementById('texto-usuario-nav');
@@ -261,18 +274,19 @@ function actualizarInterfazSegunRol() {
   const botonProcesar = document.getElementById('boton-procesar-compra');
 
   if (esModoAdministrador) {
-    if (navItemCatalogo) navItemCatalogo.style.display = 'none';
+    if (navItemCatalogo) navItemCatalogo.style.display = esPaginaAdmin ? 'none' : 'block';
     if (navItemLogin) navItemLogin.style.display = 'none';
     if (navItemRegistro) navItemRegistro.style.display = 'none';
     if (navItemFacturas) navItemFacturas.style.display = 'none';
-    if (navItemCarrito) navItemCarrito.style.display = 'none';
+    if (navItemAdminEnlace) navItemAdminEnlace.style.display = 'block';
+    if (navItemCarrito) navItemCarrito.style.display = esPaginaAdmin ? 'none' : 'block';
     if (navItemUsuario) navItemUsuario.style.display = 'block';
     if (textoUsuarioNav) textoUsuarioNav.textContent = 'Admin Oficial';
 
-    if (seccionPortada) seccionPortada.style.display = 'none';
-    if (seccionCarrusel) seccionCarrusel.style.display = 'none';
+    if (seccionPortada) seccionPortada.style.display = 'block';
+    if (seccionCarrusel) seccionCarrusel.style.display = 'block';
     if (seccionAutenticacion) seccionAutenticacion.style.display = 'none';
-    if (seccionCatalogo) seccionCatalogo.style.display = 'none';
+    if (seccionCatalogo) seccionCatalogo.style.display = 'block';
     if (seccionRegistro) seccionRegistro.style.display = 'none';
     if (seccionPanelAdmin) seccionPanelAdmin.style.display = 'block';
 
@@ -280,11 +294,21 @@ function actualizarInterfazSegunRol() {
     if (etiquetaSesionActiva) etiquetaSesionActiva.textContent = 'Sesion Administrador Oficial';
     if (avatarSesion) avatarSesion.textContent = '⚙️';
     if (accionesBarraEstado) {
-      accionesBarraEstado.innerHTML = `
-        <button class="boton-accion-secundaria" id="boton-estado-cerrar-sesion" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
-          Cerrar Sesion
-        </button>
-      `;
+      if (esPaginaAdmin) {
+        accionesBarraEstado.innerHTML = `
+          <a href="index.html" class="boton-accion-secundaria" style="padding: 0.4rem 1rem; font-size: 0.85rem; text-decoration: none;">Ver Tienda</a>
+          <button class="boton-accion-secundaria" id="boton-estado-cerrar-sesion" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+            Cerrar Sesion
+          </button>
+        `;
+      } else {
+        accionesBarraEstado.innerHTML = `
+          <a href="admin.html" class="boton-accion-principal" style="padding: 0.4rem 1rem; font-size: 0.85rem; text-decoration: none;">Ir al Panel Admin</a>
+          <button class="boton-accion-secundaria" id="boton-estado-cerrar-sesion" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+            Cerrar Sesion
+          </button>
+        `;
+      }
       const botonEstadoCerrar = document.getElementById('boton-estado-cerrar-sesion');
       if (botonEstadoCerrar) {
         botonEstadoCerrar.addEventListener('click', cerrarSesion);
@@ -299,6 +323,7 @@ function actualizarInterfazSegunRol() {
     if (navItemLogin) navItemLogin.style.display = 'none';
     if (navItemRegistro) navItemRegistro.style.display = 'none';
     if (navItemFacturas) navItemFacturas.style.display = 'block';
+    if (navItemAdminEnlace) navItemAdminEnlace.style.display = 'none';
     if (navItemCarrito) navItemCarrito.style.display = 'block';
     if (navItemUsuario) navItemUsuario.style.display = 'block';
     if (textoUsuarioNav) textoUsuarioNav.textContent = `${usuarioActual.nombre}`;
@@ -337,6 +362,7 @@ function actualizarInterfazSegunRol() {
     if (navItemLogin) navItemLogin.style.display = 'block';
     if (navItemRegistro) navItemRegistro.style.display = 'block';
     if (navItemFacturas) navItemFacturas.style.display = 'none';
+    if (navItemAdminEnlace) navItemAdminEnlace.style.display = 'none';
     if (navItemCarrito) navItemCarrito.style.display = 'block';
     if (navItemUsuario) navItemUsuario.style.display = 'none';
 
@@ -352,7 +378,7 @@ function actualizarInterfazSegunRol() {
     if (avatarSesion) avatarSesion.textContent = '👀';
     if (accionesBarraEstado) {
       accionesBarraEstado.innerHTML = `
-        <a href="#seccion-autenticacion" class="boton-accion-estado">Iniciar Sesion</a>
+        <a href="auth.html#seccion-autenticacion" class="boton-accion-estado">Iniciar Sesion</a>
       `;
     }
 
@@ -408,6 +434,14 @@ async function procesarInicioSesion(evento) {
 
   establecerSesion(usuarioEncontrado, true);
   evento.target.reset();
+
+  setTimeout(() => {
+    if (esModoAdministrador) {
+      window.location.href = 'admin.html';
+    } else {
+      window.location.href = 'index.html';
+    }
+  }, 700);
 }
 
 async function registrarCliente(evento) {
@@ -459,6 +493,10 @@ async function registrarCliente(evento) {
     evento.target.reset();
     mostrarNotificacion('Registro exitoso! Iniciando sesion...', 'exito');
     establecerSesion(clienteGuardado, true);
+
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 700);
   } catch (error) {
     console.error('Error al registrar cliente:', error);
     mostrarNotificacion('No se pudo registrar el cliente. Intenta nuevamente.', 'error');
@@ -635,11 +673,21 @@ function configurarCarruselDestacados() {
   const indicadores = document.getElementById('indicadores-carrusel');
   if (!pista) return;
 
-  listaDestacados = listaProductos.slice(0, 6);
+  const cantidadObjetivo = 6;
+  const listaBase = listaProductos.slice(0, cantidadObjetivo);
+  listaDestacados = [];
+
+  for (let i = 0; i < cantidadObjetivo; i++) {
+    listaDestacados.push(listaBase[i % listaBase.length]);
+  }
+
   pista.innerHTML = '';
   if (indicadores) indicadores.innerHTML = '';
 
-  listaDestacados.forEach((producto, indice) => {
+  const totalTarjetas = listaDestacados.length * 2;
+  const listaTarjetasRender = [...listaDestacados, ...listaDestacados];
+
+  listaTarjetasRender.forEach((producto) => {
     const tarjeta = document.createElement('div');
     tarjeta.className = 'tarjeta-carrusel';
 
@@ -669,28 +717,30 @@ function configurarCarruselDestacados() {
     }
 
     pista.appendChild(tarjeta);
+  });
 
-    if (indicadores) {
+  if (indicadores) {
+    listaDestacados.forEach((_, indice) => {
       const punto = document.createElement('div');
       punto.className = `punto-indicador ${indice === 0 ? 'activo' : ''}`;
       punto.addEventListener('click', () => {
         irAPosicionCarrusel(indice);
       });
       indicadores.appendChild(punto);
-    }
-  });
+    });
+  }
 
   iniciarRotacionAutomaticaCarrusel();
 }
 
 function moverCarrusel(direccion) {
   if (listaDestacados.length === 0) return;
-  const maxIndice = Math.max(0, listaDestacados.length - 1);
+  const totalBase = listaDestacados.length;
   indiceCarruselActual += direccion;
 
   if (indiceCarruselActual < 0) {
-    indiceCarruselActual = maxIndice;
-  } else if (indiceCarruselActual > maxIndice) {
+    indiceCarruselActual = totalBase - 1;
+  } else if (indiceCarruselActual >= totalBase) {
     indiceCarruselActual = 0;
   }
 
@@ -715,8 +765,9 @@ function actualizarDesplazamientoCarrusel() {
 
   if (indicadores) {
     const puntos = indicadores.querySelectorAll('.punto-indicador');
+    const indiceNormalizado = indiceCarruselActual % listaDestacados.length;
     puntos.forEach((p, idx) => {
-      p.classList.toggle('activo', idx === indiceCarruselActual);
+      p.classList.toggle('activo', idx === indiceNormalizado);
     });
   }
 }
@@ -905,7 +956,7 @@ async function procesarCompra() {
     mostrarNotificacion('Debes iniciar sesion como cliente para procesar la compra', 'alerta');
     const modalCarrito = document.getElementById('modal-carrito');
     if (modalCarrito) cerrarModal(modalCarrito);
-    window.location.hash = '#seccion-autenticacion';
+    window.location.href = 'auth.html#seccion-autenticacion';
     return;
   }
 
