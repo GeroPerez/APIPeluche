@@ -43,34 +43,14 @@
   <main>
     <section class="seccion-portada" id="portada-destacada">
       <div class="contenido-portada">
-        <span class="insignia-portada">✨ Peluches Suaves y Gordos</span>
-        <h1 class="titulo-portada">Encuentra a tu nuevo <span class="titulo-destacado">amigo obeso</span></h1>
-        <p class="descripcion-portada">Explora nuestra colección exclusiva de peluches artesanales de alta calidad, listos para abrazar y regalarte kilos inolvidables.</p>
+        <span class="insignia-portada">✨ Peluches Suaves y Adorables</span>
+        <h1 class="titulo-portada">Encuentra a tu nuevo <span class="titulo-destacado">amigo esponjoso</span></h1>
+        <p class="descripcion-portada">Explora nuestra colección exclusiva de peluches artesanales de alta calidad, listos para abrazar y regalar momentos inolvidables.</p>
         <div class="acciones-portada">
           <a href="#seccion-catalogo" class="boton-accion-principal">Explorar Catálogo</a>
-          <a href="#seccion-carrusel" class="boton-accion-secundaria">Ver Destacados</a>
+          <a href="#seccion-autenticacion" class="boton-accion-secundaria" id="boton-cta-sesion">Acceder a mi Cuenta</a>
         </div>
       </div>
-    </section>
-
-    <section class="seccion-carrusel" id="seccion-carrusel">
-      <div class="contenedor-carrusel-encabezado">
-        <span class="insignia-destacados">⭐ Colección Especial</span>
-        <h2 class="titulo-seccion">Peluches Destacados de la Semana</h2>
-        <p class="subtitulo-seccion">Los compañeros más tiernos y preferidos por nuestra comunidad</p>
-      </div>
-
-      <div class="caja-carrusel-contenedor">
-        <button class="boton-control-carrusel boton-anterior" id="boton-carrusel-anterior" aria-label="Anterior">❮</button>
-        
-        <div class="pista-carrusel-envoltorio">
-          <div class="pista-carrusel" id="pista-carrusel"></div>
-        </div>
-
-        <button class="boton-control-carrusel boton-siguiente" id="boton-carrusel-siguiente" aria-label="Siguiente">❯</button>
-      </div>
-
-      <div class="indicadores-carrusel" id="indicadores-carrusel"></div>
     </section>
 
     <section class="seccion-barra-estado" id="seccion-barra-estado">
@@ -115,31 +95,10 @@
       <div class="cabecera-seccion">
         <div>
           <h2 class="titulo-seccion">Catálogo de Peluches</h2>
-          <p class="subtitulo-seccion">Disponibilidad en tiempo real</p>
+          <p class="subtitulo-seccion">Disponibilidad en tiempo real sincronizada con la base de datos</p>
         </div>
-        <div class="barra-filtros-avanzada">
-          <input type="text" id="campo-busqueda" class="campo-busqueda" placeholder="Buscar por nombre...">
-          
-          <div class="filtro-orden-grupo">
-            <label for="selector-orden-precio" class="etiqueta-filtro-precio">Ordenar:</label>
-            <select id="selector-orden-precio" class="selector-filtro">
-              <option value="defecto">Predeterminado</option>
-              <option value="menor-mayor">Precio: Menor a Mayor</option>
-              <option value="mayor-menor">Precio: Mayor a Menor</option>
-            </select>
-          </div>
-
-          <div class="filtro-rango-grupo">
-            <label for="selector-rango-precio" class="etiqueta-filtro-precio">Rango:</label>
-            <select id="selector-rango-precio" class="selector-filtro">
-              <option value="todos">Todos los precios</option>
-              <option value="0-15000">Hasta $15.000</option>
-              <option value="15000-20000">$15.000 a $20.000</option>
-              <option value="20000-mas">Más de $20.000</option>
-            </select>
-          </div>
-
-          <button id="boton-limpiar-filtros" class="boton-limpiar-filtros" title="Restablecer filtros">Limpiar</button>
+        <div class="barra-filtros">
+          <input type="text" id="campo-busqueda" class="campo-busqueda" placeholder="Buscar peluche por nombre...">
         </div>
       </div>
 
@@ -203,7 +162,7 @@
       <div class="cabecera-seccion-admin">
         <div>
           <h2 class="titulo-seccion">Panel de Administración Oficial</h2>
-          <p class="subtitulo-seccion">Gestión exclusiva de catálogo, stock en MySQL e historial de facturas. Si no sos admin rajá.</p>
+          <p class="subtitulo-seccion">Gestión exclusiva de catálogo, stock en MySQL e historial de facturas</p>
         </div>
       </div>
 
@@ -267,6 +226,10 @@
             <div class="grupo-formulario">
               <label for="stock-nuevo-peluche" class="etiqueta-formulario">Stock Inicial</label>
               <input type="number" id="stock-nuevo-peluche" class="campo-formulario" min="1" placeholder="Ej: 20" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="url-nuevo-peluche" class="etiqueta-formulario">URL o Ruta de Imagen</label>
+              <input type="text" id="url-nuevo-peluche" class="campo-formulario" placeholder="Ej: /images/Oso.webp">
             </div>
             <div class="grupo-formulario" style="justify-content: flex-end;">
               <button type="submit" id="boton-guardar-nuevo-peluche" class="boton-registro" style="margin-top: 0;">Guardar en Base de Datos</button>

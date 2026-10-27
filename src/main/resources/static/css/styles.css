@@ -465,9 +465,26 @@ body {
 }
 
 .icono-carrusel {
-  font-size: 4.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 140px;
   margin: 1rem 0;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.08));
+}
+
+.imagen-carrusel {
+  max-width: 130px;
+  max-height: 130px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-carrusel:hover .imagen-carrusel {
+  transform: scale(1.08);
 }
 
 .nombre-carrusel {
@@ -747,11 +764,25 @@ body {
   position: relative;
   font-size: 5.2rem;
   user-select: none;
+  overflow: hidden;
   transition: var(--transicion-rapida);
 }
 
 .tarjeta-producto:hover .contenedor-imagen-tarjeta {
   background: linear-gradient(135deg, #ffeef2 0%, #f0e6ff 100%);
+}
+
+.imagen-producto-tarjeta {
+  max-width: 80%;
+  max-height: 80%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tarjeta-producto:hover .imagen-producto-tarjeta {
+  transform: scale(1.12) rotate(2deg);
 }
 
 .tarjeta-producto:hover .contenedor-imagen-tarjeta span:first-child {
@@ -1368,6 +1399,22 @@ body {
   padding: 0.8rem 1rem;
   border-bottom: 1px solid var(--color-borde);
   vertical-align: middle;
+}
+
+.miniatura-tabla-admin {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border: 1px solid var(--color-borde);
+  margin-right: 0.6rem;
+  vertical-align: middle;
+}
+
+.celda-producto-admin {
+  display: inline-flex;
+  align-items: center;
 }
 
 .tabla-admin tr:hover {
