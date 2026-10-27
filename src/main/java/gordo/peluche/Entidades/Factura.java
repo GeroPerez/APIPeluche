@@ -1,6 +1,7 @@
 package gordo.peluche.Entidades;
 import java.util.List;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Factura {
@@ -13,6 +14,7 @@ public class Factura {
     private float total;
 
     @OneToOne(mappedBy = "factura")
+    @JsonIgnore
     private Compra compra;
 
     public Factura(Long id, String nomcli, int iva, float subtotal, float total, Compra compra) {
