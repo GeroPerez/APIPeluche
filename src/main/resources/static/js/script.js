@@ -603,12 +603,6 @@ async function procesarCompra() {
       correo: clienteSeleccionado.correo,
       direccion: clienteSeleccionado.direccion,
       cuit: clienteSeleccionado.cuit
-    },
-    factura: {
-      nomcli: `${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido}`,
-      iva: 21,
-      subtotal: subtotalRedondeado,
-      total: totalRedondeado
     }
   };
 
@@ -641,6 +635,24 @@ async function procesarCompra() {
     }
 
     const resultadoCompra = await respuesta.json();
+
+    const datosFactura = {
+      nomcli: `${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido}`,
+      iva: 21,
+      subtotal: subtotalRedondeado,
+      total: totalRedondeado
+    };
+
+    try {
+      await fetch(URL_FACTURA, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datosFactura)
+      });
+    } catch (errorFactura) {
+      console.error('Error al registrar la factura:', errorFactura);
+    }
+
     mostrarNotificacion('Compra procesada con exito!', 'exito');
 
     const modalCarrito = document.getElementById('modal-carrito');
