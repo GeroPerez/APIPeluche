@@ -2,6 +2,8 @@ package gordo.peluche.Entidades;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +19,7 @@ public class Cliente {
     private String cuit;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore 
     private List<Compra> compras;
 
     public Cliente(Long id, String nombre, String apellido, String correo, String contrasena, String direccion,
