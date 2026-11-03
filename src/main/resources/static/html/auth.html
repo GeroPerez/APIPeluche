@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso y Registro - Peluchería Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+
+  <header class="barra-navegacion" id="barra-navegacion">
+    <div class="contenedor-navegacion">
+      <a href="../index.html" class="logotipo" id="logotipo">
+        <span class="icono-logo">🧸</span>
+        <span>Peluchería</span>
+      </a>
+      <ul class="enlaces-navegacion" id="enlaces-navegacion">
+        <li id="nav-item-catalogo"><a href="../index.html#seccion-catalogo" class="enlace-navegacion">Catálogo</a></li>
+        <li id="nav-item-login"><a href="auth.html#seccion-autenticacion" class="enlace-navegacion">Iniciar Sesión</a></li>
+        <li id="nav-item-registro"><a href="auth.html#seccion-registro" class="enlace-navegacion">Registro</a></li>
+        <li id="nav-item-facturas"><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Mis Facturas</a></li>
+        <li id="nav-item-carrito">
+          <button class="boton-carrito-nav" id="boton-abrir-carrito">
+            <span>🛒</span>
+            <span>Carrito</span>
+            <span class="contador-carrito" id="contador-carrito">0</span>
+          </button>
+        </li>
+        <li id="nav-item-usuario" style="display: none;">
+          <div class="caja-usuario-nav">
+            <span class="etiqueta-usuario-nav" id="texto-usuario-nav">Usuario</span>
+            <button class="boton-cerrar-sesion-nav" id="boton-cerrar-sesion" title="Cerrar Sesión">Salir</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion-barra-estado" id="seccion-barra-estado">
+      <div class="caja-barra-estado">
+        <div class="info-estado-sesion">
+          <div class="icono-avatar" id="avatar-sesion">👤</div>
+          <div>
+            <div class="titulo-estado-sesion">Modo actual:</div>
+            <div class="nombre-estado-sesion" id="etiqueta-sesion-activa">Navegando como Invitado (Modo lectura)</div>
+          </div>
+        </div>
+        <div class="acciones-barra-estado" id="acciones-barra-estado">
+          <a href="#seccion-autenticacion" class="boton-accion-estado" id="boton-ir-login">Iniciar Sesión</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion-autenticacion" id="seccion-autenticacion">
+      <div class="contenedor-formulario-login">
+        <div class="formulario-cabecera">
+          <h2 class="titulo-seccion">Iniciar Sesión</h2>
+          <p class="subtitulo-seccion">Ingresa con tus credenciales de cliente o administrador</p>
+        </div>
+        <form id="formulario-login" class="formulario-login">
+          <div class="grupo-formulario">
+            <label for="correo-login" class="etiqueta-formulario">Correo Electrónico</label>
+            <input type="email" id="correo-login" class="campo-formulario" placeholder="correo@ejemplo.com" required>
+          </div>
+          <div class="grupo-formulario">
+            <label for="contrasena-login" class="etiqueta-formulario">Contraseña</label>
+            <input type="password" id="contrasena-login" class="campo-formulario" placeholder="Tu contraseña" required>
+          </div>
+          <button type="submit" id="boton-iniciar-sesion" class="boton-registro">Entrar</button>
+          <div class="pie-formulario-login">
+            <span>¿No tienes cuenta? <a href="#seccion-registro">Regístrate aquí</a></span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="seccion-registro" id="seccion-registro">
+      <div class="contenedor-formulario-registro">
+        <div class="formulario-cabecera">
+          <h2 class="titulo-seccion">Registro de Clientes</h2>
+          <p class="subtitulo-seccion">Regístrate para realizar tus compras y recibir tus facturas</p>
+        </div>
+        <form id="formulario-registro" class="formulario-registro">
+          <div class="formulario-grid">
+            <div class="grupo-formulario">
+              <label for="nombre-cliente" class="etiqueta-formulario">Nombre</label>
+              <input type="text" id="nombre-cliente" class="campo-formulario" placeholder="Ej: María" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="apellido-cliente" class="etiqueta-formulario">Apellido</label>
+              <input type="text" id="apellido-cliente" class="campo-formulario" placeholder="Ej: Pérez" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="correo-cliente" class="etiqueta-formulario">Correo Electrónico</label>
+              <input type="email" id="correo-cliente" class="campo-formulario" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="contrasena-cliente" class="etiqueta-formulario">Contraseña</label>
+              <input type="password" id="contrasena-cliente" class="campo-formulario" placeholder="Mínimo 6 caracteres" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="cuit-cliente" class="etiqueta-formulario">CUIT / Documento</label>
+              <input type="text" id="cuit-cliente" class="campo-formulario" placeholder="Ej: 20-30123456-8" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="direccion-cliente" class="etiqueta-formulario">Dirección de Envío</label>
+              <input type="text" id="direccion-cliente" class="campo-formulario" placeholder="Ej: Av. San Martín 123" required>
+            </div>
+            <div class="grupo-formulario grupo-formulario-completo">
+              <button type="submit" id="boton-registro" class="boton-registro">Registrar Nuevo Cliente</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-superposicion" id="modal-carrito">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Carrito de Compras</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-carrito">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-carrito" class="lista-carrito"></div>
+      </div>
+      <div class="pie-modal-carrito">
+        <div class="resumen-totales-compra">
+          <div class="fila-resumen">
+            <span>Cliente activo:</span>
+            <span id="cliente-resumen-compra">Invitado</span>
+          </div>
+          <div class="fila-resumen">
+            <span>Subtotal:</span>
+            <span id="subtotal-compra">$0.00</span>
+          </div>
+          <div class="fila-resumen">
+            <span>IVA (21%):</span>
+            <span id="iva-compra">$0.00</span>
+          </div>
+          <div class="fila-resumen fila-total">
+            <span>Total Final:</span>
+            <span id="total-compra" class="monto-total-destacado">$0.00</span>
+          </div>
+        </div>
+        <button id="boton-procesar-compra" class="boton-procesar-compra" disabled>Procesar Orden de Compra</button>
+        <div id="aviso-invitado-carrito" class="aviso-invitado-carrito" style="display: none;">
+          Debes iniciar sesión o registrarte para completar el pago.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-factura">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Comprobante de Factura</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-factura">&times;</button>
+      </div>
+      <div class="cuerpo-modal" id="cuerpo-factura">
+        <div class="caja-factura-detalle" id="detalle-factura"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-historial">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal" id="titulo-modal-historial">Historial de Facturas</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-historial">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-historial" class="lista-carrito"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
+
+  <footer class="pie-pagina" id="pie-pagina">
+    <div class="contenido-pie-pagina">
+      <p>Peluchería Oficial - Sistema de Gestión y Venta de Peluches</p>
+      <p>Conectado a API REST Spring Boot y MySQL</p>
+    </div>
+  </footer>
+
+</body>
+</html>

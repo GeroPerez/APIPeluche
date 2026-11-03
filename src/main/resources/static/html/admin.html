@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración - Peluchería Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+
+  <header class="barra-navegacion" id="barra-navegacion">
+    <div class="contenedor-navegacion">
+      <a href="admin.html" class="logotipo" id="logotipo">
+        <span class="icono-logo">🧸</span>
+        <span>Peluchería Admin</span>
+      </a>
+      <ul class="enlaces-navegacion" id="enlaces-navegacion">
+        <li id="nav-item-catalogo" style="display: none;"><a href="../index.html" class="enlace-navegacion">Catálogo Tienda</a></li>
+        <li id="nav-item-login" style="display: none;"><a href="auth.html#seccion-autenticacion" class="enlace-navegacion">Iniciar Sesión</a></li>
+        <li id="nav-item-registro" style="display: none;"><a href="auth.html#seccion-registro" class="enlace-navegacion">Registro</a></li>
+        <li id="nav-item-facturas" style="display: none;"><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Facturas</a></li>
+        <li id="nav-item-carrito" style="display: none;">
+          <button class="boton-carrito-nav" id="boton-abrir-carrito">
+            <span>🛒</span>
+            <span>Carrito</span>
+            <span class="contador-carrito" id="contador-carrito">0</span>
+          </button>
+        </li>
+        <li id="nav-item-usuario">
+          <div class="caja-usuario-nav">
+            <span class="etiqueta-usuario-nav" id="texto-usuario-nav">Admin Oficial</span>
+            <button class="boton-cerrar-sesion-nav" id="boton-cerrar-sesion" title="Cerrar Sesión">Salir</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion-barra-estado" id="seccion-barra-estado">
+      <div class="caja-barra-estado">
+        <div class="info-estado-sesion">
+          <div class="icono-avatar" id="avatar-sesion">⚙️</div>
+          <div>
+            <div class="titulo-estado-sesion">Modo actual:</div>
+            <div class="nombre-estado-sesion" id="etiqueta-sesion-activa">Sesión Administrador Oficial</div>
+          </div>
+        </div>
+        <div class="acciones-barra-estado" id="acciones-barra-estado">
+          <a href="../index.html" class="boton-accion-secundaria" style="padding: 0.4rem 1rem; font-size: 0.85rem; text-decoration: none;">Ver Tienda</a>
+          <button class="boton-accion-secundaria" id="boton-estado-cerrar-sesion" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion-panel-admin" id="seccion-panel-admin">
+      <div class="cabecera-seccion-admin">
+        <div>
+          <h2 class="titulo-seccion">Panel de Administración Oficial</h2>
+          <p class="subtitulo-seccion">Gestión exclusiva de catálogo, stock en MySQL e historial de facturas</p>
+        </div>
+      </div>
+
+      <div class="tarjetas-resumen-admin">
+        <div class="tarjeta-metrica-admin">
+          <span class="icono-metrica">🧸</span>
+          <div>
+            <div class="valor-metrica" id="metrica-total-peluches">0</div>
+            <div class="subtitulo-metrica">Modelos en Catálogo</div>
+          </div>
+        </div>
+        <div class="tarjeta-metrica-admin">
+          <span class="icono-metrica">📦</span>
+          <div>
+            <div class="valor-metrica" id="metrica-total-stock">0</div>
+            <div class="subtitulo-metrica">Unidades en Depósito</div>
+          </div>
+        </div>
+        <div class="tarjeta-metrica-admin">
+          <span class="icono-metrica">🧾</span>
+          <div>
+            <div class="valor-metrica" id="metrica-total-facturas">0</div>
+            <div class="subtitulo-metrica">Facturas Emitidas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caja-gestion-facturas-admin">
+        <div class="cabecera-bloque-admin">
+          <h3>Historial Global de Facturas</h3>
+          <p>Consulta todas las transacciones del sistema o limpia el historial de facturación.</p>
+        </div>
+        <div class="acciones-facturas-admin">
+          <button id="boton-admin-ver-facturas" class="boton-accion-secundaria">Consultar Facturas</button>
+          <button id="boton-admin-limpiar-facturas" class="boton-peligro-admin">Limpiar Historial de Facturas</button>
+        </div>
+      </div>
+
+      <div class="caja-gestion-inventario-admin">
+        <div class="cabecera-bloque-admin">
+          <h3>Control de Stock e Inventario</h3>
+          <p>Ajusta el inventario de peluches o incorpora nuevos modelos a la tienda</p>
+        </div>
+        <div class="barra-acciones-admin">
+          <input type="text" id="campo-busqueda-admin" class="campo-busqueda" placeholder="Buscar en inventario...">
+          <button id="boton-reabastecer-todo" class="boton-accion-secundaria">Reabastecer Todo (+10 uds)</button>
+          <button id="boton-alternar-nuevo-peluche" class="boton-accion-principal">+ Nuevo Peluche</button>
+        </div>
+
+        <div id="caja-nuevo-peluche" class="caja-formulario-admin" style="display: none;">
+          <h4 style="margin-bottom: 0.8rem; font-size: 1.05rem;">Registrar Nuevo Peluche en Catálogo</h4>
+          <form id="formulario-nuevo-peluche" class="formulario-grid">
+            <div class="grupo-formulario">
+              <label for="nombre-nuevo-peluche" class="etiqueta-formulario">Nombre del Peluche</label>
+              <input type="text" id="nombre-nuevo-peluche" class="campo-formulario" placeholder="Ej: Oso Polar Esponjoso" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="precio-nuevo-peluche" class="etiqueta-formulario">Precio ($)</label>
+              <input type="number" id="precio-nuevo-peluche" class="campo-formulario" step="0.01" min="1" placeholder="Ej: 19500" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="stock-nuevo-peluche" class="etiqueta-formulario">Stock Inicial</label>
+              <input type="number" id="stock-nuevo-peluche" class="campo-formulario" min="1" placeholder="Ej: 20" required>
+            </div>
+            <div class="grupo-formulario">
+              <label for="url-nuevo-peluche" class="etiqueta-formulario">URL o Ruta de Imagen</label>
+              <input type="text" id="url-nuevo-peluche" class="campo-formulario" placeholder="Ej: /images/Oso.webp">
+            </div>
+            <div class="grupo-formulario" style="justify-content: flex-end;">
+              <button type="submit" id="boton-guardar-nuevo-peluche" class="boton-registro" style="margin-top: 0;">Guardar en Base de Datos</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="contenedor-tabla-admin">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Peluche</th>
+                <th>Precio</th>
+                <th>Stock Actual</th>
+                <th>Modificar Unidades</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-tabla-admin"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-superposicion" id="modal-historial">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal" id="titulo-modal-historial">Historial de Facturas</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-historial">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-historial" class="lista-carrito"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
+
+  <footer class="pie-pagina" id="pie-pagina">
+    <div class="contenido-pie-pagina">
+      <p>Peluchería Oficial - Panel de Administración</p>
+      <p>Conectado a API REST Spring Boot y MySQL</p>
+    </div>
+  </footer>
+
+</body>
+</html>
