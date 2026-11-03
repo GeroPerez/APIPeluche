@@ -55,7 +55,7 @@ INSERT INTO Cliente (nombre, apellido, correo, contrasena, direccion, cuit) VALU
 
 INSERT INTO Producto (nombre, precio, stock, imagenUrl) VALUES
 ('Chancho', 18500.00, 25, 'Chancho.webp'),
-('Cocodrilo', 15900.00, 30, 'Cocodrilo.webp'),
+('La crocodilo', 15900.00, 30, 'Cocodrilo.webp'),
 ('Dragonite', 21000.00, 18, 'Dragonite.webp'),
 ('Elefante', 14500.00, 40, 'Elefante.webp'),
 ('Foca', 16800.00, 22, 'Foca.webp'),

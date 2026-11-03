@@ -229,6 +229,18 @@ function establecerModoInvitado() {
   actualizarInterfazSegunRol();
 }
 
+function estaEnSubcarpetaHtml() {
+  return window.location.pathname.toLowerCase().includes('/html/');
+}
+
+function obtenerRutaPagina(archivo) {
+  const enSubcarpeta = estaEnSubcarpetaHtml();
+  if (archivo === 'index.html') {
+    return enSubcarpeta ? '../index.html' : 'index.html';
+  }
+  return enSubcarpeta ? archivo : `html/${archivo}`;
+}
+
 function cerrarSesion() {
   establecerModoInvitado();
   carrito = [];
@@ -236,7 +248,7 @@ function cerrarSesion() {
   mostrarNotificacion('Has cerrado sesion correctamente', 'exito');
   const rutaActual = window.location.pathname.toLowerCase();
   if (rutaActual.includes('admin.html')) {
-    window.location.href = 'index.html';
+    window.location.href = obtenerRutaPagina('index.html');
   }
 }
 
@@ -245,7 +257,7 @@ function actualizarInterfazSegunRol() {
   const esPaginaAdmin = rutaActual.includes('admin.html');
 
   if (esPaginaAdmin && !esModoAdministrador) {
-    window.location.href = 'auth.html';
+    window.location.href = obtenerRutaPagina('auth.html');
     return;
   }
 
@@ -296,14 +308,14 @@ function actualizarInterfazSegunRol() {
     if (accionesBarraEstado) {
       if (esPaginaAdmin) {
         accionesBarraEstado.innerHTML = `
-          <a href="index.html" class="boton-accion-secundaria" style="padding: 0.4rem 1rem; font-size: 0.85rem; text-decoration: none;">Ver Tienda</a>
+          <a href="${obtenerRutaPagina('index.html')}" class="boton-accion-secundaria" style="padding: 0.4rem 1rem; font-size: 0.85rem; text-decoration: none;">Ver Tienda</a>
           <button class="boton-accion-secundaria" id="boton-estado-cerrar-sesion" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
             Cerrar Sesion
           </button>
         `;
       } else {
         accionesBarraEstado.innerHTML = `
-          <a href="admin.html" class="boton-accion-principal" style="padding: 0.4rem 1rem; font-size: 0.85rem; text-decoration: none;">Ir al Panel Admin</a>
+          <a href="${obtenerRutaPagina('admin.html')}" class="boton-accion-principal" style="padding: 0.4rem 1rem; font-size: 0.85rem; text-decoration: none;">Ir al Panel Admin</a>
           <button class="boton-accion-secundaria" id="boton-estado-cerrar-sesion" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
             Cerrar Sesion
           </button>
@@ -378,7 +390,7 @@ function actualizarInterfazSegunRol() {
     if (avatarSesion) avatarSesion.textContent = '👀';
     if (accionesBarraEstado) {
       accionesBarraEstado.innerHTML = `
-        <a href="auth.html#seccion-autenticacion" class="boton-accion-estado">Iniciar Sesion</a>
+        <a href="${obtenerRutaPagina('auth.html')}#seccion-autenticacion" class="boton-accion-estado">Iniciar Sesion</a>
       `;
     }
 
@@ -437,9 +449,9 @@ async function procesarInicioSesion(evento) {
 
   setTimeout(() => {
     if (esModoAdministrador) {
-      window.location.href = 'admin.html';
+      window.location.href = obtenerRutaPagina('admin.html');
     } else {
-      window.location.href = 'index.html';
+      window.location.href = obtenerRutaPagina('index.html');
     }
   }, 700);
 }
@@ -495,7 +507,7 @@ async function registrarCliente(evento) {
     establecerSesion(clienteGuardado, true);
 
     setTimeout(() => {
-      window.location.href = 'index.html';
+      window.location.href = obtenerRutaPagina('index.html');
     }, 700);
   } catch (error) {
     console.error('Error al registrar cliente:', error);
@@ -956,7 +968,7 @@ async function procesarCompra() {
     mostrarNotificacion('Debes iniciar sesion como cliente para procesar la compra', 'alerta');
     const modalCarrito = document.getElementById('modal-carrito');
     if (modalCarrito) cerrarModal(modalCarrito);
-    window.location.href = 'auth.html#seccion-autenticacion';
+    window.location.href = `${obtenerRutaPagina('auth.html')}#seccion-autenticacion`;
     return;
   }
 
