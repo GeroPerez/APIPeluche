@@ -471,6 +471,16 @@ async function registrarCliente(evento) {
     return;
   }
 
+  if (contrasena.length<6){
+    mostrarNotificacion('La contraseña tiene que tener al menos 6 caracteres', 'alerta')
+    return;
+  }
+
+  if (cuit.length!=11){
+    mostrarNotificacion('El cuit debe ser de 11 caracteres', 'alerta')
+    return;
+  }
+
   const nuevoCliente = {
     nombre: nombre,
     apellido: apellido,
@@ -697,7 +707,7 @@ function configurarCarruselDestacados() {
   if (indicadores) indicadores.innerHTML = '';
 
   const totalTarjetas = listaDestacados.length * 2;
-  const listaTarjetasRender = [...listaDestacados, ...listaDestacados];
+  const listaTarjetasRender = [...listaDestacados];
 
   listaTarjetasRender.forEach((producto) => {
     const tarjeta = document.createElement('div');
@@ -708,7 +718,7 @@ function configurarCarruselDestacados() {
     const textoStock = esPocoStock ? `¡Solo quedan ${producto.stock}!` : `${producto.stock} unidades`;
 
     tarjeta.innerHTML = `
-      <span class="insignia-carrusel-estrella">⭐ Destacado</span>
+      <span class="insignia-carrusel-estrella">Destacado</span>
       <div class="icono-carrusel">
         <img src="${urlImagen}" alt="${producto.nombre}" class="imagen-carrusel" loading="lazy" onerror="this.onerror=null; this.src='/images/Oso.webp'">
       </div>
@@ -747,7 +757,7 @@ function configurarCarruselDestacados() {
 
 function moverCarrusel(direccion) {
   if (listaDestacados.length === 0) return;
-  const totalBase = listaDestacados.length;
+  const totalBase = listaDestacados.length-2;
   indiceCarruselActual += direccion;
 
   if (indiceCarruselActual < 0) {
@@ -1324,7 +1334,7 @@ function obtenerImagenPeluche(producto) {
   if (texto.includes('pug')) return '/images/Pug.webp';
   if (texto.includes('tigre')) return '/images/Tigre.webp';
   if (texto.includes('pez')) return '/images/Pez.webp';
-  if (texto.includes('cocodrilo')) return '/images/Cocodrilo.webp';
+  if (texto.includes('crocodilo')) return '/images/Cocodrilo.webp';
   if (texto.includes('dragonite')) return '/images/Dragonite.webp';
   if (texto.includes('garfield')) return '/images/Garfield.webp';
   if (texto.includes('godzilla')) return '/images/Godzilla.webp';
