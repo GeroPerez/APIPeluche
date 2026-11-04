@@ -593,7 +593,7 @@ function renderizarCatalogo(productos) {
 
     tarjeta.innerHTML = `
       <div class="contenedor-imagen-tarjeta">
-        <img src="${urlImagen}" alt="${producto.nombre}" class="imagen-producto-tarjeta" loading="lazy" onerror="this.src='images/Oso.webp'">
+        <img src="${urlImagen}" alt="${producto.nombre}" class="imagen-producto-tarjeta" loading="lazy" onerror="this.onerror=null; this.src='/images/Oso.webp'">
         <span class="insignia-stock ${claseStock}">${textoStock}</span>
       </div>
       <div class="cuerpo-tarjeta">
@@ -710,7 +710,7 @@ function configurarCarruselDestacados() {
     tarjeta.innerHTML = `
       <span class="insignia-carrusel-estrella">⭐ Destacado</span>
       <div class="icono-carrusel">
-        <img src="${urlImagen}" alt="${producto.nombre}" class="imagen-carrusel" loading="lazy" onerror="this.src='images/Oso.webp'">
+        <img src="${urlImagen}" alt="${producto.nombre}" class="imagen-carrusel" loading="lazy" onerror="this.onerror=null; this.src='/images/Oso.webp'">
       </div>
       <h3 class="nombre-carrusel">${producto.nombre}</h3>
       <p style="font-size: 0.85rem; color: #636e72; margin-bottom: 0.5rem;">${textoStock}</p>
@@ -1297,10 +1297,11 @@ function formatearDinero(monto) {
 function normalizarRutaImagen(url) {
   if (!url || typeof url !== 'string' || url.trim() === '') return '';
   const limpia = url.trim();
-  if (limpia.startsWith('http://') || limpia.startsWith('https://') || limpia.startsWith('/') || limpia.startsWith('images/')) {
+  if (limpia.startsWith('http://') || limpia.startsWith('https://') || limpia.startsWith('/')) {
     return limpia;
   }
-  return `images/${limpia}`;
+  // quita "images/" si ya lo trae y deja siempre la ruta absoluta
+  return `/images/${limpia.replace(/^images\//, '')}`;
 }
 
 function obtenerImagenPeluche(producto) {
@@ -1313,27 +1314,27 @@ function obtenerImagenPeluche(producto) {
   const nombre = producto && producto.nombre ? producto.nombre : '';
   const texto = normalizarTexto(nombre);
 
-  if (texto.includes('panda')) return 'images/Panda.webp';
-  if (texto.includes('gato')) return 'images/Gato.webp';
-  if (texto.includes('chancho') || texto.includes('cerdito')) return 'images/Chancho.webp';
-  if (texto.includes('pinguino')) return 'images/Pinguino.webp';
-  if (texto.includes('elefante')) return 'images/Elefante.webp';
-  if (texto.includes('foca')) return 'images/Foca.webp';
-  if (texto.includes('perro') || texto.includes('perrito')) return 'images/Perro.webp';
-  if (texto.includes('pug')) return 'images/Pug.webp';
-  if (texto.includes('tigre')) return 'images/Tigre.webp';
-  if (texto.includes('pez')) return 'images/Pez.webp';
-  if (texto.includes('cocodrilo')) return 'images/Cocodrilo.webp';
-  if (texto.includes('dragonite')) return 'images/Dragonite.webp';
-  if (texto.includes('garfield')) return 'images/Garfield.webp';
-  if (texto.includes('godzilla')) return 'images/Godzilla.webp';
-  if (texto.includes('kirby')) return 'images/Kirby.webp';
-  if (texto.includes('marill')) return 'images/Marill.webp';
-  if (texto.includes('pikachu')) return 'images/Pikachu.webp';
-  if (texto.includes('snorlax')) return 'images/Snorlax.webp';
-  if (texto.includes('oso')) return 'images/Oso.webp';
+  if (texto.includes('panda')) return '/images/Panda.webp';
+  if (texto.includes('gato')) return '/images/Gato.webp';
+  if (texto.includes('chancho') || texto.includes('cerdito')) return '/images/Chancho.webp';
+  if (texto.includes('pinguino')) return '/images/Pinguino.webp';
+  if (texto.includes('elefante')) return '/images/Elefante.webp';
+  if (texto.includes('foca')) return '/images/Foca.webp';
+  if (texto.includes('perro') || texto.includes('perrito')) return '/images/Perro.webp';
+  if (texto.includes('pug')) return '/images/Pug.webp';
+  if (texto.includes('tigre')) return '/images/Tigre.webp';
+  if (texto.includes('pez')) return '/images/Pez.webp';
+  if (texto.includes('cocodrilo')) return '/images/Cocodrilo.webp';
+  if (texto.includes('dragonite')) return '/images/Dragonite.webp';
+  if (texto.includes('garfield')) return '/images/Garfield.webp';
+  if (texto.includes('godzilla')) return '/images/Godzilla.webp';
+  if (texto.includes('kirby')) return '/images/Kirby.webp';
+  if (texto.includes('marill')) return '/images/Marill.webp';
+  if (texto.includes('pikachu')) return '/images/Pikachu.webp';
+  if (texto.includes('snorlax')) return '/images/Snorlax.webp';
+  if (texto.includes('oso')) return '/images/Oso.webp';
 
-  return 'images/Oso.webp';
+  return '/images/Oso.webp';
 }
 
 async function descontarStockDePeluches(articulosComprados) {
@@ -1392,7 +1393,7 @@ function renderizarTablaAdmin(productos) {
       <td><strong>#${p.id}</strong></td>
       <td>
         <span class="celda-producto-admin">
-          <img src="${urlImagen}" alt="${p.nombre}" class="miniatura-tabla-admin" onerror="this.src='images/Oso.webp'">
+          <img src="${urlImagen}" alt="${p.nombre}" class="miniatura-tabla-admin" onerror="this.onerror=null; this.src='/images/Oso.webp'">
           <strong>${p.nombre}</strong>
         </span>
       </td>
