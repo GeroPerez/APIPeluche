@@ -1589,7 +1589,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Diseno responsivo */
+
 @media (max-width: 900px) {
   .cabecera-seccion {
     flex-direction: column;
@@ -1656,5 +1656,193 @@ body {
 @media (max-width: 480px) {
   .contenedor-productos {
     grid-template-columns: 1fr;
+  }
+}
+
+.enlace-navegacion.activo {
+  color: var(--color-primario);
+  background: #fff0f3;
+}
+
+.seccion-nosotros {
+  max-width: 1200px;
+  width: 100%;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.encabezado-nosotros {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+.insignia-nosotros {
+  display: inline-block;
+  background: #fff0f3;
+  color: var(--color-primario);
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.titulo-nosotros {
+  font-size: 2.2rem;
+  line-height: 1.25;
+  color: var(--color-texto);
+  margin-bottom: 0.6rem;
+}
+
+.titulo-nosotros span {
+  color: var(--color-primario);
+}
+
+.subtitulo-nosotros {
+  color: var(--color-texto-suave);
+  font-size: 1.05rem;
+}
+
+.caja-organigrama {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra-suave);
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+.caja-organigrama a {
+  display: block;
+  min-width: 900px;
+}
+
+.imagen-organigrama {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.nota-organigrama {
+  text-align: center;
+  color: var(--color-texto-suave);
+  font-size: 0.85rem;
+  margin-top: 0.8rem;
+}
+
+.contador-productos {
+  display: inline-block;
+  background: var(--color-secundario-claro);
+  color: var(--color-secundario);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  margin-top: 0.8rem;
+}
+
+.grilla-productos-nosotros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.3rem;
+}
+
+.item-producto-nosotros {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra-suave);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transicion-rapida);
+}
+
+.item-producto-nosotros:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra-elevada);
+  border-color: #ffccd7;
+}
+
+.imagen-item-nosotros {
+  background: linear-gradient(135deg, #fff5f8 0%, #f7f2ff 100%);
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagen-item-nosotros img {
+  max-width: 75%;
+  max-height: 75%;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.item-producto-nosotros:hover .imagen-item-nosotros img {
+  transform: scale(1.1);
+}
+
+.datos-item-nosotros {
+  padding: 1rem 1rem 1.2rem;
+  text-align: center;
+}
+
+.nombre-item-nosotros {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-texto);
+  margin-bottom: 0.2rem;
+}
+
+.precio-item-nosotros {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-primario);
+}
+
+.stock-item-nosotros {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #d48806;
+  background: #fff8e7;
+  border: 1px solid #ffe58f;
+  border-radius: 12px;
+  padding: 0.15rem 0.6rem;
+}
+
+.stock-item-nosotros.agotado {
+  color: var(--color-peligro);
+  background: #fff0f0;
+  border-color: #ffc9c9;
+}
+
+.estado-productos-nosotros {
+  text-align: center;
+  color: var(--color-texto-suave);
+  padding: 2rem 0;
+}
+
+.acciones-final-nosotros {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.2rem;
+}
+
+.enlace-pie-pagina{
+  color: #f3117b ;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .titulo-nosotros {
+    font-size: 1.7rem;
+  }
+  .caja-organigrama {
+    padding: 1rem;
   }
 }

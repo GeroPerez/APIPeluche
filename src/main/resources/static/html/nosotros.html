@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros - Peluchería Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <header class="barra-navegacion" id="barra-navegacion">
+    <div class="contenedor-navegacion">
+      <a href="../index.html" class="logotipo" id="logotipo">
+        <span class="icono-logo">🧸</span>
+        <span>Gordiluches</span>
+      </a>
+      <ul class="enlaces-navegacion" id="enlaces-navegacion">
+        <li id="nav-item-catalogo"><a href="../index.html#seccion-catalogo" class="enlace-navegacion">Catálogo</a></li>
+        <li id="nav-item-login"><a href="auth.html#seccion-autenticacion" class="enlace-navegacion">Iniciar Sesión</a></li>
+        <li id="nav-item-registro"><a href="auth.html#seccion-registro" class="enlace-navegacion">Registro</a></li>
+        <li id="nav-item-facturas"><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Mis Facturas</a></li>
+        <li id="nav-item-carrito">
+          <button class="boton-carrito-nav" id="boton-abrir-carrito">
+            <span>🛒</span>
+            <span>Carrito</span>
+            <span class="contador-carrito" id="contador-carrito">0</span>
+          </button>
+        </li>
+        <li id="nav-item-usuario" style="display: none;">
+          <div class="caja-usuario-nav">
+            <span class="etiqueta-usuario-nav" id="texto-usuario-nav">Usuario</span>
+            <button class="boton-cerrar-sesion-nav" id="boton-cerrar-sesion" title="Cerrar Sesión">Salir</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion-nosotros" id="organigrama">
+      <div class="encabezado-nosotros">
+        <span class="insignia-nosotros">🏢 Nuestra empresa</span>
+        <h1 class="titulo-nosotros">Conoce nuestro <span>organigrama</span></h1>
+        <p class="subtitulo-nosotros">Así está organizado el equipo que hace posible que cada peluche llegue a tus manos</p>
+      </div>
+
+      <div class="caja-organigrama">
+        <a href="../images/Organigrama.webp" target="_blank" rel="noopener" title="Abrir en tamaño completo">
+          <img class="imagen-organigrama" src="../images/Organigrama.webp"
+               alt="Organigrama de la empresa: el Gerente General supervisa a los gerentes de ventas, compra, logística, administración y finanzas, y a Recursos Humanos. Ventas incluye marketing (redes sociales y diseñadores gráficos), vendedores y atención al cliente. Compra incluye compradores y gestión de inventario. Logística incluye conductores y empaquetadores. Administración y finanzas incluye contabilidad y tesorería.">
+        </a>
+      </div>
+      <p class="nota-organigrama">Toca la imagen para verla en tamaño completo</p>
+    </section>
+
+    <section class="seccion-nosotros" id="nuestros-productos">
+      <div class="encabezado-nosotros">
+        <span class="insignia-nosotros">🧸 Lo que ofrecemos</span>
+        <h2 class="titulo-nosotros">Todos nuestros <span>peluches</span></h2>
+        <p class="subtitulo-nosotros">La colección completa que tenemos disponible en la tienda</p>
+        <span class="contador-productos" id="contador-productos-nosotros" style="display: none;"></span>
+      </div>
+
+      <div class="estado-productos-nosotros" id="estado-productos-nosotros">Cargando productos...</div>
+      <div class="grilla-productos-nosotros" id="lista-productos-nosotros"></div>
+
+      <div class="acciones-final-nosotros">
+        <a href="../index.html#seccion-catalogo" class="boton-accion-principal">Ir al Catálogo y Comprar</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-superposicion" id="modal-carrito">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Carrito de Compras</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-carrito">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-carrito" class="lista-carrito"></div>
+      </div>
+      <div class="pie-modal-carrito">
+        <div class="resumen-totales-compra">
+          <div class="fila-resumen">
+            <span>Cliente activo:</span>
+            <span id="cliente-resumen-compra">Invitado</span>
+          </div>
+          <div class="fila-resumen">
+            <span>Subtotal:</span>
+            <span id="subtotal-compra">$0.00</span>
+          </div>
+          <div class="fila-resumen">
+            <span>IVA (21%):</span>
+            <span id="iva-compra">$0.00</span>
+          </div>
+          <div class="fila-resumen fila-total">
+            <span>Total Final:</span>
+            <span id="total-compra" class="monto-total-destacado">$0.00</span>
+          </div>
+        </div>
+        <button id="boton-procesar-compra" class="boton-procesar-compra" disabled>Procesar Orden de Compra</button>
+        <div id="aviso-invitado-carrito" class="aviso-invitado-carrito" style="display: none;">
+          Debes iniciar sesión o registrarte para completar el pago.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-factura">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Comprobante de Factura</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-factura">&times;</button>
+      </div>
+      <div class="cuerpo-modal" id="cuerpo-factura">
+        <div class="caja-factura-detalle" id="detalle-factura"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-historial">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal" id="titulo-modal-historial">Historial de Facturas</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-historial">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-historial" class="lista-carrito"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
+
+  <footer class="pie-pagina" id="pie-pagina">
+    <div class="contenido-pie-pagina">
+      <p>Peluchería Oficial - Sistema de Gestión y Venta de Peluches</p>
+      <p>Conectado a API REST Spring Boot y MySQL</p>
+    </div>
+  </footer>
+</body>
+</html>
