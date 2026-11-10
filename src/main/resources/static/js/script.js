@@ -182,6 +182,7 @@ function configurarEventos() {
   if (botonAdminLimpiarFacturas) {
     botonAdminLimpiarFacturas.addEventListener('click', limpiarHistorialFacturas);
   }
+
 }
 
 function restaurarSesion() {
@@ -704,9 +705,7 @@ function configurarCarruselDestacados() {
   }
 
   pista.innerHTML = '';
-  if (indicadores) indicadores.innerHTML = '';
 
-  const totalTarjetas = listaDestacados.length * 2;
   const listaTarjetasRender = [...listaDestacados];
 
   listaTarjetasRender.forEach((producto) => {
@@ -741,32 +740,55 @@ function configurarCarruselDestacados() {
     pista.appendChild(tarjeta);
   });
 
-  if (indicadores) {
-    listaDestacados.forEach((_, indice) => {
-      const punto = document.createElement('div');
-      punto.className = `punto-indicador ${indice === 0 ? 'activo' : ''}`;
-      punto.addEventListener('click', () => {
-        irAPosicionCarrusel(indice);
-      });
-      indicadores.appendChild(punto);
-    });
-  }
-
+  crearIndicadoresCarrusel();
   iniciarRotacionAutomaticaCarrusel();
 }
 
 function moverCarrusel(direccion) {
-  if (listaDestacados.length === 0) return;
-  const totalBase = listaDestacados.length-2;
+  const posiciones = obtenerPosicionesCarrusel();
+  if (posiciones === 0) return;
+
   indiceCarruselActual += direccion;
 
   if (indiceCarruselActual < 0) {
-    indiceCarruselActual = totalBase - 1;
-  } else if (indiceCarruselActual >= totalBase) {
+    indiceCarruselActual = posiciones - 1;
+  } else if (indiceCarruselActual >= posiciones) {
     indiceCarruselActual = 0;
   }
 
   actualizarDesplazamientoCarrusel();
+}
+
+function obtenerPosicionesCarrusel() {
+  const pista = document.getElementById('pista-carrusel');
+  const tarjetas = pista ? pista.querySelectorAll('.tarjeta-carrusel') : [];
+  if (tarjetas.length === 0) return 0;
+
+  const envoltorio = pista.parentElement;
+  const anchoTarjeta = tarjetas[0].offsetWidth + 24; // 24 = gap de 1.5rem
+  let visibles = 3;
+
+  if (envoltorio.offsetWidth > 0 && anchoTarjeta > 24) {
+    visibles = Math.max(1, Math.round((envoltorio.offsetWidth + 24) / anchoTarjeta));
+  }
+
+  return Math.max(1, tarjetas.length - visibles + 1);
+}
+
+function crearIndicadoresCarrusel() {
+  const indicadores = document.getElementById('indicadores-carrusel');
+  if (!indicadores) return;
+
+  const posiciones = obtenerPosicionesCarrusel();
+
+  for (let indice = 0; indice < posiciones; indice++) {
+    const punto = document.createElement('div');
+    punto.className = `punto-indicador ${indice === indiceCarruselActual ? 'activo' : ''}`;
+    punto.addEventListener('click', () => {
+      irAPosicionCarrusel(indice);
+    });
+    indicadores.appendChild(punto);
+  }
 }
 
 function irAPosicionCarrusel(indice) {
@@ -786,12 +808,11 @@ function actualizarDesplazamientoCarrusel() {
   pista.style.transform = `translateX(-${indiceCarruselActual * anchoTarjeta}px)`;
 
   if (indicadores) {
-    const puntos = indicadores.querySelectorAll('.punto-indicador');
-    const indiceNormalizado = indiceCarruselActual % listaDestacados.length;
-    puntos.forEach((p, idx) => {
-      p.classList.toggle('activo', idx === indiceNormalizado);
-    });
-  }
+  const puntos = indicadores.querySelectorAll('.punto-indicador');
+  puntos.forEach((p, idx) => {
+    p.classList.toggle('activo', idx === indiceCarruselActual);
+  });
+}
 }
 
 function iniciarRotacionAutomaticaCarrusel() {
@@ -1614,5 +1635,80 @@ async function crearNuevoPeluche(evento) {
       botonGuardar.disabled = false;
       botonGuardar.textContent = 'Guardar en Base de Datos';
     }
+  }
+}
+//Apartado sobre nosotros//
+document.addEventListener('DOMContentLoaded', cargarProductosNosotros);
+
+async function cargarProductosNosotros() {
+  const lista = document.getElementById('lista-productos-nosotros');
+  const estado = document.getElementById('estado-productos-nosotros');
+  const contador = document.getElementById('contador-productos-nosotros');
+
+  try {
+    const respuesta = await fetch(URL_PRODUCTOS);
+    if (!respuesta.ok) throw new Error('Error HTTP: ' + respuesta.status);
+
+    const productos = await respuesta.json();
+    if (!Array.isArray(productos) || productos.length === 0) {
+      estado.textContent = 'Por ahora no hay productos cargados.';
+      return;
+    }
+
+    productos.sort((a, b) => (a.nombre || '').localeCompare(b.nombre || '', 'es'));
+
+    productos.forEach((producto) => {
+      const item = document.createElement('article');
+      item.className = 'item-producto-nosotros';
+
+      const cajaImagen = document.createElement('div');
+      cajaImagen.className = 'imagen-item-nosotros';
+      const imagen = document.createElement('img');
+      imagen.src = obtenerImagenPeluche(producto);
+      imagen.alt = producto.nombre;
+      imagen.loading = 'lazy';
+      imagen.onerror = function () {
+        this.onerror = null;
+        this.src = '/images/Oso.webp';
+      };
+      cajaImagen.appendChild(imagen);
+
+      const datos = document.createElement('div');
+      datos.className = 'datos-item-nosotros';
+
+      const nombre = document.createElement('h3');
+      nombre.className = 'nombre-item-nosotros';
+      nombre.textContent = producto.nombre;
+
+      const precio = document.createElement('div');
+      precio.className = 'precio-item-nosotros';
+      precio.textContent = formatearDinero(producto.precio);
+
+      datos.appendChild(nombre);
+      datos.appendChild(precio);
+
+      if (producto.stock <= 0) {
+        const aviso = document.createElement('span');
+        aviso.className = 'stock-item-nosotros agotado';
+        aviso.textContent = 'Sin stock';
+        datos.appendChild(aviso);
+      } else if (producto.stock < 10) {
+        const aviso = document.createElement('span');
+        aviso.className = 'stock-item-nosotros';
+        aviso.textContent = '¡Solo quedan ' + producto.stock + '!';
+        datos.appendChild(aviso);
+      }
+
+      item.appendChild(cajaImagen);
+      item.appendChild(datos);
+      lista.appendChild(item);
+    });
+
+    estado.style.display = 'none';
+    contador.textContent = productos.length + ' peluches disponibles';
+    contador.style.display = 'inline-block';
+  } catch (error) {
+    console.error('Error al cargar los productos:', error);
+    estado.textContent = 'No se pudo cargar la lista de productos. Intenta nuevamente más tarde.';
   }
 }
