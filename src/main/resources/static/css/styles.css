@@ -54,7 +54,7 @@ body {
 .contenedor-navegacion {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.9rem 1.5rem;
+  padding: 0.8rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,29 +63,19 @@ body {
 .logotipo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: var(--color-primario);
   text-decoration: none;
-  letter-spacing: -0.5px;
+}
+
+.imagen-logo {
+  height: 68px; 
+  width: auto;   
+  object-fit: contain;
+  display: block;
   transition: var(--transicion-rapida);
 }
 
-.logotipo:hover {
+.imagen-logo:hover {
   transform: scale(1.03);
-}
-
-.icono-logo {
-  font-size: 2rem;
-  filter: drop-shadow(0 4px 6px rgba(255, 77, 121, 0.25));
-  animation: flotarSuave 3s ease-in-out infinite;
-}
-
-@keyframes flotarSuave {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
 }
 
 .enlaces-navegacion {
