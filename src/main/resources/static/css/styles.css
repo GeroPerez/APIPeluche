@@ -1,6 +1,11 @@
 /* ==========================================================================
    BLOQUE 1: VARIABLES CSS, RESET GENERAL Y TIPOGRAFÍA BASE
    ========================================================================== */
+html {
+  font-size: 85%;
+  zoom: 85%;
+}
+
 :root {
   --color-primario: #ff4d79;
   --color-primario-oscuro: #e63360;
@@ -21,6 +26,13 @@
   --sombra-boton: 0 6px 18px rgba(255, 77, 121, 0.35);
   --borde-radio: 20px;
   --transicion-rapida: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Variables de partículas y destellos del Hero */
+  --particle-color-primario: rgba(255, 60, 110, 0.82);
+  --particle-color-secundario: rgba(105, 78, 235, 0.75);
+  --particle-color-acento: rgba(255, 140, 35, 0.78);
+  --particle-opacity-min: 0.5;
+  --particle-opacity-max: 0.95;
 }
 
 * {
@@ -186,6 +198,8 @@ body {
    BLOQUE 3: PORTADA HERO / PRESENTACIÓN DE LA TIENDA
    ========================================================================== */
 .seccion-portada {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, #fff0f3 0%, #f3e8ff 100%);
   padding: 4rem 1.5rem;
   text-align: center;
@@ -193,8 +207,233 @@ body {
 }
 
 .contenido-portada {
+  position: relative;
+  z-index: 2;
   max-width: 800px;
   margin: 0 auto;
+}
+
+/* Contenedor de partículas decorativas del Hero */
+.hero-particulas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.particula {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.particula svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Tipologías de partículas por estilo y color */
+.particula-estrella {
+  color: var(--particle-color-primario);
+  filter: drop-shadow(0 2px 6px rgba(255, 77, 121, 0.3));
+}
+
+.particula-corazon {
+  color: var(--particle-color-primario);
+  filter: drop-shadow(0 2px 6px rgba(255, 77, 121, 0.35));
+}
+
+.particula-destello {
+  color: var(--particle-color-secundario);
+  filter: drop-shadow(0 2px 6px rgba(112, 88, 230, 0.35));
+}
+
+.particula-huella {
+  color: var(--particle-color-acento);
+  filter: drop-shadow(0 2px 5px rgba(255, 159, 67, 0.3));
+}
+
+/* Distribución en el lateral izquierdo */
+.particula-izq-1 {
+  top: 15%;
+  left: 5%;
+  width: 22px;
+  height: 22px;
+  animation: flotacion-suave-1 6.5s ease-in-out infinite;
+}
+
+.particula-izq-2 {
+  top: 38%;
+  left: 11%;
+  width: 26px;
+  height: 26px;
+  animation: flotacion-suave-2 8s ease-in-out infinite 0.7s;
+}
+
+.particula-izq-3 {
+  top: 65%;
+  left: 4%;
+  width: 28px;
+  height: 28px;
+  animation: destello-suave 5.8s ease-in-out infinite 1.2s;
+}
+
+.particula-izq-4 {
+  top: 75%;
+  left: 14%;
+  width: 20px;
+  height: 20px;
+  animation: flotacion-suave-1 7.2s ease-in-out infinite 2s;
+}
+
+.particula-izq-5 {
+  top: 22%;
+  left: 17%;
+  width: 16px;
+  height: 16px;
+  animation: destello-suave 6s ease-in-out infinite 2.8s;
+}
+
+.particula-izq-6 {
+  top: 48%;
+  left: 20%;
+  width: 20px;
+  height: 20px;
+  animation: destello-suave 5.4s ease-in-out infinite 1.8s;
+}
+
+.particula-izq-7 {
+  top: 70%;
+  left: 22%;
+  width: 18px;
+  height: 18px;
+  animation: flotacion-suave-1 6.8s ease-in-out infinite 0.4s;
+}
+
+/* Distribución en el lateral derecho */
+.particula-der-1 {
+  top: 14%;
+  right: 6%;
+  width: 30px;
+  height: 30px;
+  animation: destello-suave 6.2s ease-in-out infinite 0.5s;
+}
+
+.particula-der-2 {
+  top: 36%;
+  right: 12%;
+  width: 24px;
+  height: 24px;
+  animation: flotacion-suave-1 7.5s ease-in-out infinite 1.5s;
+}
+
+.particula-der-3 {
+  top: 58%;
+  right: 4%;
+  width: 22px;
+  height: 22px;
+  animation: flotacion-suave-2 6.8s ease-in-out infinite 2.2s;
+}
+
+.particula-der-4 {
+  top: 76%;
+  right: 13%;
+  width: 22px;
+  height: 22px;
+  animation: destello-suave 7s ease-in-out infinite 0.9s;
+}
+
+.particula-der-5 {
+  top: 25%;
+  right: 18%;
+  width: 18px;
+  height: 18px;
+  animation: flotacion-suave-2 8.4s ease-in-out infinite 3.1s;
+}
+
+.particula-der-6 {
+  top: 46%;
+  right: 21%;
+  width: 21px;
+  height: 21px;
+  animation: flotacion-suave-1 6.4s ease-in-out infinite 1.9s;
+}
+
+.particula-der-7 {
+  top: 68%;
+  right: 23%;
+  width: 19px;
+  height: 19px;
+  animation: destello-suave 5.6s ease-in-out infinite 2.6s;
+}
+
+/* Animaciones @keyframes optimizadas para GPU (transform y opacity) */
+@keyframes flotacion-suave-1 {
+  0% {
+    transform: translateY(0) scale(0.92) rotate(0deg);
+    opacity: var(--particle-opacity-min);
+  }
+  50% {
+    transform: translateY(-16px) scale(1.08) rotate(10deg);
+    opacity: var(--particle-opacity-max);
+  }
+  100% {
+    transform: translateY(0) scale(0.92) rotate(0deg);
+    opacity: var(--particle-opacity-min);
+  }
+}
+
+@keyframes flotacion-suave-2 {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: var(--particle-opacity-max);
+  }
+  50% {
+    transform: translateY(14px) scale(0.88) rotate(-12deg);
+    opacity: var(--particle-opacity-min);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: var(--particle-opacity-max);
+  }
+}
+
+@keyframes destello-suave {
+  0% {
+    transform: translateY(0) scale(0.85);
+    opacity: var(--particle-opacity-min);
+  }
+  45% {
+    transform: translateY(-10px) scale(1.15) rotate(15deg);
+    opacity: var(--particle-opacity-max);
+  }
+  100% {
+    transform: translateY(0) scale(0.85);
+    opacity: var(--particle-opacity-min);
+  }
+}
+
+/* Respeto a preferencias del usuario de reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .particula {
+    animation: none !important;
+    opacity: var(--particle-opacity-min);
+  }
+}
+
+/* En pantallas móviles se atenúan las partículas de los márgenes interiores */
+@media (max-width: 600px) {
+  .particula-izq-2,
+  .particula-izq-5,
+  .particula-der-2,
+  .particula-der-5 {
+    display: none;
+  }
 }
 
 .insignia-portada {
@@ -876,7 +1115,7 @@ body {
 }
 
 .titulo-producto {
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--color-texto);
   margin-bottom: 0.35rem;
@@ -1053,12 +1292,12 @@ body {
    ========================================================================== */
 .modal-superposicion {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(45, 52, 54, 0.5);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(45, 52, 54, 0.55);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2098,7 +2337,7 @@ body.tema-oscuro {
   --sombra-elevada: 0 16px 36px rgba(0, 0, 0, 0.5);
 
   background-color: #131419 !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='90' height='90'%3E%3Cg fill='%23ff6b8b' fill-opacity='0.08'%3E%3C!-- Osito minimalista 1 --%3E%3Cg transform='translate(18, 14)'%3E%3Ccircle cx='4' cy='5' r='3.8'/%3E%3Ccircle cx='20' cy='5' r='3.8'/%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Ccircle cx='12' cy='14' r='3.8' fill='%23131419' fill-opacity='0.8'/%3E%3Ccircle cx='12' cy='13.2' r='1.3'/%3E%3Cellipse cx='12' cy='25' rx='7.5' ry='6.5'/%3E%3Ccircle cx='3.5' cy='22' r='2.8'/%3E%3Ccircle cx='20.5' cy='22' r='2.8'/%3E%3Ccircle cx='6' cy='31' r='3.2'/%3E%3Ccircle cx='18' cy='31' r='3.2'/%3E%3C/g%3E%3C!-- Osito minimalista 2 (alternado) --%3E%3Cg transform='translate(68, 64)'%3E%3Ccircle cx='4' cy='5' r='3.8'/%3E%3Ccircle cx='20' cy='5' r='3.8'/%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Ccircle cx='12' cy='14' r='3.8' fill='%23131419' fill-opacity='0.8'/%3E%3Ccircle cx='12' cy='13.2' r='1.3'/%3E%3Cellipse cx='12' cy='25' rx='7.5' ry='6.5'/%3E%3Ccircle cx='3.5' cy='22' r='2.8'/%3E%3Ccircle cx='20.5' cy='22' r='2.8'/%3E%3Ccircle cx='6' cy='31' r='3.2'/%3E%3Ccircle cx='18' cy='31' r='3.2'/%3E%3C/g%3E%3C!-- Huellitas tiernas minimalistas --%3E%3Cg transform='translate(66, 18)'%3E%3Cellipse cx='6' cy='8' rx='4' ry='3'/%3E%3Ccircle cx='2' cy='3' r='1.5'/%3E%3Ccircle cx='6' cy='2' r='1.5'/%3E%3Ccircle cx='10' cy='3' r='1.5'/%3E%3C/g%3E%3Cg transform='translate(18, 68)'%3E%3Cellipse cx='6' cy='8' rx='4' ry='3'/%3E%3Ccircle cx='2' cy='3' r='1.5'/%3E%3Ccircle cx='6' cy='2' r='1.5'/%3E%3Ccircle cx='10' cy='3' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='90' height='90'%3E%3Cg fill='%23ff6b8b' fill-opacity='0.15'%3E%3C!-- Osito minimalista 1 --%3E%3Cg transform='translate(18, 14)'%3E%3Ccircle cx='4' cy='5' r='3.8'/%3E%3Ccircle cx='20' cy='5' r='3.8'/%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Ccircle cx='12' cy='14' r='3.8' fill='%23131419' fill-opacity='0.75'/%3E%3Ccircle cx='12' cy='13.2' r='1.3'/%3E%3Cellipse cx='12' cy='25' rx='7.5' ry='6.5'/%3E%3Ccircle cx='3.5' cy='22' r='2.8'/%3E%3Ccircle cx='20.5' cy='22' r='2.8'/%3E%3Ccircle cx='6' cy='31' r='3.2'/%3E%3Ccircle cx='18' cy='31' r='3.2'/%3E%3C/g%3E%3C!-- Osito minimalista 2 (alternado) --%3E%3Cg transform='translate(68, 64)'%3E%3Ccircle cx='4' cy='5' r='3.8'/%3E%3Ccircle cx='20' cy='5' r='3.8'/%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Ccircle cx='12' cy='14' r='3.8' fill='%23131419' fill-opacity='0.75'/%3E%3Ccircle cx='12' cy='13.2' r='1.3'/%3E%3Cellipse cx='12' cy='25' rx='7.5' ry='6.5'/%3E%3Ccircle cx='3.5' cy='22' r='2.8'/%3E%3Ccircle cx='20.5' cy='22' r='2.8'/%3E%3Ccircle cx='6' cy='31' r='3.2'/%3E%3Ccircle cx='18' cy='31' r='3.2'/%3E%3C/g%3E%3C!-- Huellitas tiernas minimalistas --%3E%3Cg transform='translate(66, 18)'%3E%3Cellipse cx='6' cy='8' rx='4' ry='3'/%3E%3Ccircle cx='2' cy='3' r='1.5'/%3E%3Ccircle cx='6' cy='2' r='1.5'/%3E%3Ccircle cx='10' cy='3' r='1.5'/%3E%3C/g%3E%3Cg transform='translate(18, 68)'%3E%3Cellipse cx='6' cy='8' rx='4' ry='3'/%3E%3Ccircle cx='2' cy='3' r='1.5'/%3E%3Ccircle cx='6' cy='2' r='1.5'/%3E%3Ccircle cx='10' cy='3' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") !important;
   color: var(--color-texto);
 }
 
@@ -2141,6 +2380,34 @@ body.tema-oscuro .etiqueta-usuario-nav {
 body.tema-oscuro .seccion-portada {
   background: linear-gradient(135deg, #1f1b29 0%, #171923 100%);
   border-bottom-color: var(--color-borde);
+  --particle-color-primario: rgba(255, 149, 175, 0.7);
+  --particle-color-secundario: rgba(186, 171, 255, 0.65);
+  --particle-color-acento: rgba(255, 214, 165, 0.65);
+  --particle-opacity-min: 0.25;
+  --particle-opacity-max: 0.75;
+}
+
+body.tema-oscuro .particula-estrella,
+body.tema-oscuro .particula-corazon {
+  filter: drop-shadow(0 0 8px rgba(255, 133, 161, 0.5));
+}
+
+body.tema-oscuro .particula-destello {
+  filter: drop-shadow(0 0 8px rgba(186, 171, 255, 0.5));
+}
+
+body.tema-oscuro .particula-huella {
+  filter: drop-shadow(0 0 8px rgba(255, 214, 165, 0.45));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.tema-claro) .seccion-portada {
+    --particle-color-primario: rgba(255, 149, 175, 0.7);
+    --particle-color-secundario: rgba(186, 171, 255, 0.65);
+    --particle-color-acento: rgba(255, 214, 165, 0.65);
+    --particle-opacity-min: 0.25;
+    --particle-opacity-max: 0.75;
+  }
 }
 
 body.tema-oscuro .titulo-portada {
