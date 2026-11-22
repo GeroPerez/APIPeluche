@@ -1,13 +1,19 @@
+/* ==========================================================================
+   BLOQUE 1: CONSTANTES DE CONFIGURACIÓN, ENDPOINTS Y ESTADO GLOBAL
+   ========================================================================== */
 const URL_PRODUCTOS = '/api/producto';
 const URL_CLIENTES = '/api/clientes';
 const URL_COMPRA = '/api/compra';
 const URL_FACTURA = '/api/factura';
 
 const CLAVE_SESION_USUARIO = 'pelucheria_sesion_usuario';
+const CLAVE_TEMA_OSCURO = 'pelucheria_tema_oscuro';
 const CLAVE_HISTORIAL_FACTURAS_LIMPIAS = 'pelucheria_facturas_limpias';
+const CLAVE_RECIBOS_DETALLADOS = 'pelucheria_recibos_detallados';
 
 let listaProductos = [];
 let listaClientes = [];
+let listaCompras = [];
 let listaFacturas = [];
 let carrito = [];
 
@@ -18,17 +24,50 @@ let temporizadorCarrusel = null;
 let usuarioActual = null;
 let esModoAdministrador = false;
 
+/* ==========================================================================
+   BLOQUE 2: CICLO DE VIDA E INICIALIZACIÓN DE LA APLICACIÓN
+   ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
   inicializarAplicacion();
 });
 
 function inicializarAplicacion() {
+  inicializarTema();
   configurarEventos();
   restaurarSesion();
   obtenerProductos();
   cargarClientes();
+  cargarCompras();
 }
 
+/* ==========================================================================
+   BLOQUE 3: GESTIÓN DE TEMA CLARO / OSCURO (THEME SWITCHER)
+   ========================================================================== */
+function inicializarTema() {
+  try {
+    const temaGuardado = localStorage.getItem(CLAVE_TEMA_OSCURO);
+    if (temaGuardado === 'true') {
+      document.body.classList.add('tema-oscuro');
+    } else {
+      document.body.classList.remove('tema-oscuro');
+    }
+  } catch (error) {
+    console.warn('No se pudo leer el tema de almacenamiento local:', error);
+  }
+}
+
+function alternarTema() {
+  const esOscuro = document.body.classList.toggle('tema-oscuro');
+  try {
+    localStorage.setItem(CLAVE_TEMA_OSCURO, esOscuro ? 'true' : 'false');
+  } catch (error) {
+    console.warn('No se pudo guardar el tema:', error);
+  }
+}
+
+/* ==========================================================================
+   BLOQUE 4: VINCULACIÓN DE EVENTOS DEL DOM Y LISTENERS GLOBALES
+   ========================================================================== */
 function configurarEventos() {
   const botonAbrirCarrito = document.getElementById('boton-abrir-carrito');
   const botonCerrarCarrito = document.getElementById('boton-cerrar-carrito');
@@ -51,6 +90,11 @@ function configurarEventos() {
   if (botonCerrarFactura && modalFactura) {
     botonCerrarFactura.addEventListener('click', () => {
       cerrarModal(modalFactura);
+      const modalHistorial = document.getElementById('modal-historial');
+      if (modalHistorial && modalHistorial.dataset.abiertoPreviamente === 'true') {
+        delete modalHistorial.dataset.abiertoPreviamente;
+        abrirModal(modalHistorial);
+      }
     });
   }
 
@@ -142,6 +186,11 @@ function configurarEventos() {
     });
   }
 
+  const botonTema = document.getElementById('boton-alternar-tema');
+  if (botonTema) {
+    botonTema.addEventListener('click', alternarTema);
+  }
+
   const botonAlternarNuevo = document.getElementById('boton-alternar-nuevo-peluche');
   const cajaNuevoPeluche = document.getElementById('caja-nuevo-peluche');
   if (botonAlternarNuevo && cajaNuevoPeluche) {
@@ -184,6 +233,9 @@ function configurarEventos() {
   }
 }
 
+/* ==========================================================================
+   BLOQUE 5: AUTENTICACIÓN, GESTIÓN DE SESIÓN Y CONTROL DE ACCESO
+   ========================================================================== */
 function restaurarSesion() {
   try {
     const sesionGuardada = localStorage.getItem(CLAVE_SESION_USUARIO);
@@ -262,6 +314,7 @@ function actualizarInterfazSegunRol() {
   }
 
   const navItemCatalogo = document.getElementById('nav-item-catalogo');
+  const navItemNosotros = document.getElementById('nav-item-nosotros');
   const navItemLogin = document.getElementById('nav-item-login');
   const navItemRegistro = document.getElementById('nav-item-registro');
   const navItemFacturas = document.getElementById('nav-item-facturas');
@@ -286,7 +339,8 @@ function actualizarInterfazSegunRol() {
   const botonProcesar = document.getElementById('boton-procesar-compra');
 
   if (esModoAdministrador) {
-    if (navItemCatalogo) navItemCatalogo.style.display = esPaginaAdmin ? 'none' : 'block';
+    if (navItemCatalogo) navItemCatalogo.style.display = 'block';
+    if (navItemNosotros) navItemNosotros.style.display = 'block';
     if (navItemLogin) navItemLogin.style.display = 'none';
     if (navItemRegistro) navItemRegistro.style.display = 'none';
     if (navItemFacturas) navItemFacturas.style.display = 'none';
@@ -332,6 +386,7 @@ function actualizarInterfazSegunRol() {
 
   } else if (usuarioActual) {
     if (navItemCatalogo) navItemCatalogo.style.display = 'block';
+    if (navItemNosotros) navItemNosotros.style.display = 'block';
     if (navItemLogin) navItemLogin.style.display = 'none';
     if (navItemRegistro) navItemRegistro.style.display = 'none';
     if (navItemFacturas) navItemFacturas.style.display = 'block';
@@ -371,6 +426,7 @@ function actualizarInterfazSegunRol() {
 
   } else {
     if (navItemCatalogo) navItemCatalogo.style.display = 'block';
+    if (navItemNosotros) navItemNosotros.style.display = 'block';
     if (navItemLogin) navItemLogin.style.display = 'block';
     if (navItemRegistro) navItemRegistro.style.display = 'block';
     if (navItemFacturas) navItemFacturas.style.display = 'none';
@@ -520,6 +576,9 @@ async function registrarCliente(evento) {
   }
 }
 
+/* ==========================================================================
+   BLOQUE 6: CATÁLOGO DE PRODUCTOS (CARGA, RENDERIZADO Y FILTRADO)
+   ========================================================================== */
 async function obtenerProductos() {
   const estadoCarga = document.getElementById('estado-carga');
   const mensajeError = document.getElementById('mensaje-error-conexion');
@@ -598,7 +657,7 @@ function renderizarCatalogo(productos) {
       </div>
       <div class="cuerpo-tarjeta">
         <h3 class="titulo-producto">${producto.nombre}</h3>
-        <p class="informacion-stock">Código: #${producto.id} | Stock: ${producto.stock}</p>
+        <p class="informacion-stock">${producto.dimensiones ? producto.dimensiones : "Dimensiones a consultar"} | Stock: ${producto.stock}</p>
         <div class="pie-tarjeta">
           <span class="precio-producto">${formatearDinero(producto.precio)}</span>
           <button 
@@ -661,9 +720,20 @@ function aplicarFiltrosYOrden() {
     productosFiltrados.sort((a, b) => a.precio - b.precio);
   } else if (tipoOrden === 'mayor-menor') {
     productosFiltrados.sort((a, b) => b.precio - a.precio);
+  } else if (tipoOrden === 'tamano-mayor') {
+    productosFiltrados.sort((a, b) => calcularVolumenPeluche(b.dimensiones) - calcularVolumenPeluche(a.dimensiones));
+  } else if (tipoOrden === 'tamano-menor') {
+    productosFiltrados.sort((a, b) => calcularVolumenPeluche(a.dimensiones) - calcularVolumenPeluche(b.dimensiones));
   }
 
   renderizarCatalogo(productosFiltrados);
+}
+
+function calcularVolumenPeluche(dimensiones) {
+  if (!dimensiones || typeof dimensiones !== 'string') return 0;
+  const numeros = dimensiones.match(/\d+(\.\d+)?/g);
+  if (!numeros || numeros.length === 0) return 0;
+  return numeros.map(Number).reduce((acumulado, valor) => acumulado * valor, 1);
 }
 
 function limpiarFiltrosCatalogo() {
@@ -678,6 +748,9 @@ function limpiarFiltrosCatalogo() {
   aplicarFiltrosYOrden();
 }
 
+/* ==========================================================================
+   BLOQUE 7: CARRUSEL DE PELUCHES DESTACADOS (SLIDER Y ROTACIÓN)
+   ========================================================================== */
 function configurarCarruselDestacados() {
   if (listaProductos.length === 0) return;
 
@@ -811,6 +884,9 @@ function irACatalogoYDestacar(idProducto) {
   }, 450);
 }
 
+/* ==========================================================================
+   BLOQUE 8: GESTIÓN DEL CARRITO DE COMPRAS Y PEDIDOS
+   ========================================================================== */
 function aniadirAlCarrito(idProducto) {
   const producto = listaProductos.find((item) => item.id === idProducto);
   if (!producto) {
@@ -1048,6 +1124,7 @@ async function procesarCompra() {
     if (modalCarrito) cerrarModal(modalCarrito);
 
     const articulosComprados = carrito.map((item) => ({ ...item }));
+    guardarDetalleReciboLocal(resultadoCompra, datosCompra, articulosComprados);
     mostrarComprobanteFactura(resultadoCompra, datosCompra, articulosComprados);
 
     await descontarStockDePeluches(articulosComprados);
@@ -1065,7 +1142,69 @@ async function procesarCompra() {
   }
 }
 
-function mostrarComprobanteFactura(resultado, datosCompra, articulosComprados) {
+/* ==========================================================================
+   BLOQUE 9: FACTURACIÓN ELECTRÓNICA, COMPROBANTES E HISTORIAL
+   ========================================================================== */
+function guardarDetalleReciboLocal(resultado, datosCompra, articulos) {
+  try {
+    const idFactura = resultado && resultado.factura && resultado.factura.id
+      ? resultado.factura.id
+      : (resultado && resultado.id ? resultado.id : null);
+    if (!idFactura) return;
+
+    const raw = localStorage.getItem(CLAVE_RECIBOS_DETALLADOS);
+    const recibos = raw ? JSON.parse(raw) : {};
+
+    recibos[idFactura] = {
+      fecha: new Date().toLocaleDateString('es-AR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }),
+      cliente: {
+        nombre: (datosCompra && datosCompra.cliente && datosCompra.cliente.nombre)
+          ? `${datosCompra.cliente.nombre} ${datosCompra.cliente.apellido || ''}`.trim()
+          : (usuarioActual ? `${usuarioActual.nombre} ${usuarioActual.apellido || ''}`.trim() : ''),
+        cuit: (datosCompra && datosCompra.cliente && datosCompra.cliente.cuit)
+          ? datosCompra.cliente.cuit
+          : (usuarioActual ? usuarioActual.cuit : ''),
+        direccion: (datosCompra && datosCompra.cliente && datosCompra.cliente.direccion)
+          ? datosCompra.cliente.direccion
+          : (usuarioActual ? usuarioActual.direccion : ''),
+        correo: (datosCompra && datosCompra.cliente && datosCompra.cliente.correo)
+          ? datosCompra.cliente.correo
+          : (usuarioActual ? usuarioActual.correo : '')
+      },
+      items: (articulos || []).map((art) => ({
+        id: art.id,
+        nombre: art.nombre,
+        precio: art.precio,
+        cantidad: art.cantidad
+      })),
+      subtotal: datosCompra ? datosCompra.subtotal : 0,
+      total: datosCompra ? datosCompra.total : 0
+    };
+
+    localStorage.setItem(CLAVE_RECIBOS_DETALLADOS, JSON.stringify(recibos));
+  } catch (error) {
+    console.warn('No se pudo guardar el detalle local del recibo:', error);
+  }
+}
+
+function obtenerDetalleReciboLocal(idFactura) {
+  try {
+    const raw = localStorage.getItem(CLAVE_RECIBOS_DETALLADOS);
+    if (!raw) return null;
+    const recibos = JSON.parse(raw);
+    return recibos && recibos[idFactura] ? recibos[idFactura] : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function mostrarComprobanteFactura(resultado, datosCompra, articulosComprados, opcionesExtra = {}) {
   const modalFactura = document.getElementById('modal-factura');
   const detalleFactura = document.getElementById('detalle-factura');
   if (!modalFactura || !detalleFactura) return;
@@ -1074,55 +1213,230 @@ function mostrarComprobanteFactura(resultado, datosCompra, articulosComprados) {
     ? resultado.factura.id
     : (resultado && resultado.id ? resultado.id : 'N/A');
 
-  const fechaActual = new Date().toLocaleDateString('es-AR', {
+  const fechaAMostrar = opcionesExtra.fecha || new Date().toLocaleDateString('es-AR', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
   });
 
-  let itemsHtml = '';
-  articulosComprados.forEach((item) => {
-    const totalItem = item.precio * item.cantidad;
-    itemsHtml += `
-      <div class="item-factura-fila">
-        <span>${item.cantidad}x ${item.nombre}</span>
-        <span>${formatearDinero(totalItem)}</span>
-      </div>
+  let filasItemsHtml = '';
+  if (Array.isArray(articulosComprados) && articulosComprados.length > 0) {
+    articulosComprados.forEach((item) => {
+      const cantidad = item.cantidad || 1;
+      const precio = item.precio || 0;
+      const totalItem = precio * cantidad;
+      filasItemsHtml += `
+        <tr>
+          <td><strong>${item.nombre || 'Peluche artesanal'}</strong></td>
+          <td style="text-align: center;">${cantidad}</td>
+          <td style="text-align: right;">${formatearDinero(precio)}</td>
+          <td style="text-align: right;"><strong>${formatearDinero(totalItem)}</strong></td>
+        </tr>
+      `;
+    });
+  } else {
+    const subtotalItem = datosCompra ? datosCompra.subtotal : (resultado.subtotal || 0);
+    filasItemsHtml += `
+      <tr>
+        <td><strong>Peluches artesanales (Orden #${idFactura})</strong></td>
+        <td style="text-align: center;">1</td>
+        <td style="text-align: right;">${formatearDinero(subtotalItem)}</td>
+        <td style="text-align: right;"><strong>${formatearDinero(subtotalItem)}</strong></td>
+      </tr>
     `;
-  });
+  }
+
+  const clienteNombre = (opcionesExtra.cliente && opcionesExtra.cliente.nombre)
+    ? opcionesExtra.cliente.nombre
+    : ((resultado && (resultado.nomcli || (resultado.cliente && resultado.cliente.nombre))) ||
+       (usuarioActual ? `${usuarioActual.nombre} ${usuarioActual.apellido || ''}`.trim() : 'Cliente'));
+
+  const clienteCuit = (opcionesExtra.cliente && opcionesExtra.cliente.cuit)
+    ? opcionesExtra.cliente.cuit
+    : ((resultado && resultado.cliente && resultado.cliente.cuit)
+       ? resultado.cliente.cuit
+       : (usuarioActual && usuarioActual.cuit ? usuarioActual.cuit : 'Consumidor Final'));
+
+  const clienteDireccion = (opcionesExtra.cliente && opcionesExtra.cliente.direccion)
+    ? opcionesExtra.cliente.direccion
+    : ((resultado && resultado.cliente && resultado.cliente.direccion)
+       ? resultado.cliente.direccion
+       : (usuarioActual && usuarioActual.direccion ? usuarioActual.direccion : 'Mendoza, Argentina'));
+
+  const clienteCorreo = (opcionesExtra.cliente && opcionesExtra.cliente.correo)
+    ? opcionesExtra.cliente.correo
+    : ((resultado && resultado.cliente && resultado.cliente.correo)
+       ? resultado.cliente.correo
+       : (usuarioActual && usuarioActual.correo ? usuarioActual.correo : '-'));
+
+  const subtotalNeto = datosCompra ? datosCompra.subtotal : (resultado.subtotal || 0);
+  const totalFinal = datosCompra ? datosCompra.total : (resultado.total || 0);
+  const ivaCalculado = totalFinal - subtotalNeto;
 
   detalleFactura.innerHTML = `
-    <div class="cabecera-factura">
-      <h4>PELUCHERIA S.A.</h4>
-      <p style="font-size: 0.85rem; color: #636e72;">Factura B - Comprobante de Compra #${idFactura}</p>
-      <p style="font-size: 0.85rem; color: #636e72;">Fecha: ${fechaActual}</p>
-    </div>
-    <div style="margin-bottom: 1rem; font-size: 0.9rem;">
-      <p><strong>Cliente:</strong> ${usuarioActual.nombre} ${usuarioActual.apellido}</p>
-      <p><strong>CUIT:</strong> ${usuarioActual.cuit}</p>
-      <p><strong>Direccion:</strong> ${usuarioActual.direccion}</p>
-      <p><strong>Correo:</strong> ${usuarioActual.correo}</p>
-    </div>
-    <div class="items-factura-lista">
-      ${itemsHtml}
-    </div>
-    <div class="resumen-totales-compra" style="margin-bottom: 0;">
-      <div class="fila-resumen">
-        <span>Subtotal Neto:</span>
-        <span>${formatearDinero(datosCompra.subtotal)}</span>
+    <div class="cabecera-factura-pro">
+      <div class="empresa-factura-info">
+        <h3><span>🧸</span> Gordiluches S.A.</h3>
+        <p>Peluchería Oficial &bull; Fábrica Artesanal</p>
+        <p>CUIT: 30-71458921-9 &bull; IVA Responsable Inscripto</p>
+        <p>Av. San Martín 1540, Ciudad de Mendoza, Argentina</p>
       </div>
-      <div class="fila-resumen">
-        <span>IVA (21%):</span>
-        <span>${formatearDinero(datosCompra.total - datosCompra.subtotal)}</span>
+      <div class="meta-factura-pro">
+        <span class="insignia-comprobante-oficial">Comprobante Oficial</span>
+        <div class="numero-factura-destacado">N° ${String(idFactura).padStart(8, '0')}</div>
+        <div class="fecha-factura-pro">Fecha: ${fechaAMostrar}</div>
       </div>
-      <div class="fila-resumen fila-total">
-        <span>Total Pagado:</span>
-        <span class="monto-total-destacado">${formatearDinero(datosCompra.total)}</span>
+    </div>
+
+    <div class="seccion-cliente-pro">
+      <div class="dato-cliente-item">
+        <strong>Receptor:</strong> ${clienteNombre}
       </div>
+      <div class="dato-cliente-item">
+        <strong>CUIT / Doc:</strong> ${clienteCuit}
+      </div>
+      <div class="dato-cliente-item">
+        <strong>Domicilio:</strong> ${clienteDireccion}
+      </div>
+      <div class="dato-cliente-item">
+        <strong>E-mail:</strong> ${clienteCorreo}
+      </div>
+    </div>
+
+    <table class="tabla-items-factura">
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th style="text-align: center;">Cant.</th>
+          <th style="text-align: right;">Unitario</th>
+          <th style="text-align: right;">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${filasItemsHtml}
+      </tbody>
+    </table>
+
+    <div class="pie-factura-totales">
+      <div class="fila-total-factura">
+        <span>Subtotal Gravado:</span>
+        <span>${formatearDinero(subtotalNeto)}</span>
+      </div>
+      <div class="fila-total-factura">
+        <span>IVA Débito Fiscal (21%):</span>
+        <span>${formatearDinero(ivaCalculado)}</span>
+      </div>
+      <div class="fila-total-factura fila-total-destacada">
+        <span>Importe Total:</span>
+        <span>${formatearDinero(totalFinal)}</span>
+      </div>
+    </div>
+
+    <div class="pie-comprobante-nota">
+      Documento no válido como factura fiscal ante AFIP. Comprobante digital de operación de compra en línea.
     </div>
   `;
 
   abrirModal(modalFactura);
+}
+
+async function cargarCompras() {
+  try {
+    const respuesta = await fetch(URL_COMPRA);
+    if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+    const compras = await respuesta.json();
+    if (Array.isArray(compras)) {
+      listaCompras = compras;
+    }
+  } catch (error) {
+    console.warn('No se pudieron obtener compras de la API:', error);
+  }
+}
+
+function verDetalleComprobanteFactura(factura) {
+  if (!factura) return;
+  const modalHistorial = document.getElementById('modal-historial');
+  if (modalHistorial && modalHistorial.classList.contains('activo')) {
+    modalHistorial.dataset.abiertoPreviamente = 'true';
+    cerrarModal(modalHistorial);
+  }
+
+  // 1. Buscar en recibos guardados localmente
+  const reciboLocal = obtenerDetalleReciboLocal(factura.id);
+
+  // 2. Buscar en la lista de compras del backend
+  const compraAsociada = listaCompras.find((c) => {
+    return (c.factura && c.factura.id === factura.id) || c.id === factura.id;
+  });
+
+  // 3. Buscar cliente en la lista de clientes si coincide el nombre
+  let clienteEncontrado = null;
+  if (factura.nomcli && Array.isArray(listaClientes)) {
+    const nombreNormalizadoFactura = normalizarTexto(factura.nomcli);
+    clienteEncontrado = listaClientes.find((c) => {
+      const nombreCompleto = normalizarTexto(`${c.nombre} ${c.apellido || ''}`);
+      return nombreCompleto === nombreNormalizadoFactura ||
+             normalizarTexto(c.nombre) === nombreNormalizadoFactura;
+    });
+  }
+
+  const datosCompra = {
+    subtotal: (reciboLocal && reciboLocal.subtotal) || factura.subtotal,
+    total: (reciboLocal && reciboLocal.total) || factura.total
+  };
+
+  let articulosAMostrar = [];
+  if (reciboLocal && Array.isArray(reciboLocal.items) && reciboLocal.items.length > 0) {
+    articulosAMostrar = reciboLocal.items;
+  } else if (compraAsociada && Array.isArray(compraAsociada.productos) && compraAsociada.productos.length > 0) {
+    // Agrupar productos si vienen repetidos
+    const mapaProductos = new Map();
+    compraAsociada.productos.forEach((p) => {
+      if (!p || !p.id) return;
+      if (mapaProductos.has(p.id)) {
+        const itemExistente = mapaProductos.get(p.id);
+        itemExistente.cantidad += 1;
+      } else {
+        mapaProductos.set(p.id, {
+          id: p.id,
+          nombre: p.nombre,
+          precio: p.precio,
+          cantidad: 1
+        });
+      }
+    });
+    articulosAMostrar = Array.from(mapaProductos.values());
+  }
+
+  const opcionesExtra = {
+    fecha: reciboLocal ? reciboLocal.fecha : null,
+    cliente: (reciboLocal && reciboLocal.cliente && reciboLocal.cliente.nombre)
+      ? reciboLocal.cliente
+      : ((compraAsociada && compraAsociada.cliente)
+          ? {
+              nombre: `${compraAsociada.cliente.nombre || ''} ${compraAsociada.cliente.apellido || ''}`.trim() || factura.nomcli,
+              cuit: compraAsociada.cliente.cuit || 'Consumidor Final',
+              direccion: compraAsociada.cliente.direccion || 'Mendoza, Argentina',
+              correo: compraAsociada.cliente.correo || '-'
+            }
+          : (clienteEncontrado
+              ? {
+                  nombre: `${clienteEncontrado.nombre} ${clienteEncontrado.apellido || ''}`.trim(),
+                  cuit: clienteEncontrado.cuit || 'Consumidor Final',
+                  direccion: clienteEncontrado.direccion || 'Mendoza, Argentina',
+                  correo: clienteEncontrado.correo || '-'
+                }
+              : {
+                  nombre: factura.nomcli || 'Cliente',
+                  cuit: (usuarioActual && usuarioActual.nombre && factura.nomcli && normalizarTexto(factura.nomcli).includes(normalizarTexto(usuarioActual.nombre))) ? usuarioActual.cuit : 'Consumidor Final',
+                  direccion: (usuarioActual && usuarioActual.nombre && factura.nomcli && normalizarTexto(factura.nomcli).includes(normalizarTexto(usuarioActual.nombre))) ? usuarioActual.direccion : 'Mendoza, Argentina',
+                  correo: (usuarioActual && usuarioActual.nombre && factura.nomcli && normalizarTexto(factura.nomcli).includes(normalizarTexto(usuarioActual.nombre))) ? usuarioActual.correo : '-'
+                }))
+  };
+
+  mostrarComprobanteFactura(factura, datosCompra, articulosAMostrar, opcionesExtra);
 }
 
 async function obtenerFacturas() {
@@ -1144,12 +1458,15 @@ async function obtenerFacturas() {
   `;
 
   try {
-    const respuesta = await fetch(URL_FACTURA);
-    if (!respuesta.ok) {
-      throw new Error(`Error HTTP: ${respuesta.status}`);
+    const [respuestaFacturas] = await Promise.all([
+      fetch(URL_FACTURA),
+      cargarCompras()
+    ]);
+    if (!respuestaFacturas.ok) {
+      throw new Error(`Error HTTP: ${respuestaFacturas.status}`);
     }
 
-    const facturas = await respuesta.json();
+    const facturas = await respuestaFacturas.json();
     listaFacturas = Array.isArray(facturas) ? facturas : [];
 
     const idsOcultos = obtenerIdsFacturasOcultas();
@@ -1176,14 +1493,19 @@ async function obtenerFacturas() {
     listaHistorial.innerHTML = '';
     facturasVisibles.forEach((factura) => {
       const elemento = document.createElement('div');
-      elemento.className = 'elemento-carrito';
+      elemento.className = 'elemento-carrito elemento-factura-clickeable';
+      elemento.title = 'Haz clic para ver el comprobante completo';
       elemento.innerHTML = `
         <div class="info-elemento-carrito">
-          <div class="nombre-elemento-carrito">Factura #${factura.id} - ${factura.nomcli || 'Cliente'}</div>
+          <div class="nombre-elemento-carrito">Factura N° ${String(factura.id).padStart(8, '0')} - ${factura.nomcli || 'Cliente'}</div>
           <div class="precio-unitario-carrito">Subtotal: ${formatearDinero(factura.subtotal)} | IVA: ${factura.iva}%</div>
+          <span class="insignia-ver-factura">📄 Ver comprobante</span>
         </div>
         <div class="subtotal-elemento-carrito">${formatearDinero(factura.total)}</div>
       `;
+      elemento.addEventListener('click', () => {
+        verDetalleComprobanteFactura(factura);
+      });
       listaHistorial.appendChild(elemento);
     });
 
@@ -1245,6 +1567,9 @@ function actualizarMetricasAdmin() {
   }
 }
 
+/* ==========================================================================
+   BLOQUE 10: UTILIDADES DE INTERFAZ (MODALES, TOASTS Y FORMATOS)
+   ========================================================================== */
 function abrirModal(modal) {
   if (modal) {
     modal.classList.add('activo');
@@ -1324,7 +1649,7 @@ function obtenerImagenPeluche(producto) {
   if (texto.includes('pug')) return '/images/Pug.webp';
   if (texto.includes('tigre')) return '/images/Tigre.webp';
   if (texto.includes('pez')) return '/images/Pez.webp';
-  if (texto.includes('cocodrilo')) return '/images/Cocodrilo.webp';
+  if (texto.includes('cocodrilo') || texto.includes('crocodilo')) return '/images/Cocodrilo.webp';
   if (texto.includes('dragonite')) return '/images/Dragonite.webp';
   if (texto.includes('garfield')) return '/images/Garfield.webp';
   if (texto.includes('godzilla')) return '/images/Godzilla.webp';
@@ -1366,6 +1691,9 @@ async function descontarStockDePeluches(articulosComprados) {
   actualizarMetricasAdmin();
 }
 
+/* ==========================================================================
+   BLOQUE 11: PANEL DE ADMINISTRACIÓN (GESTIÓN DE STOCK Y PRODUCTOS)
+   ========================================================================== */
 function renderizarTablaAdmin(productos) {
   const cuerpoTabla = document.getElementById('cuerpo-tabla-admin');
   if (!cuerpoTabla) return;
@@ -1398,6 +1726,7 @@ function renderizarTablaAdmin(productos) {
         </span>
       </td>
       <td>${formatearDinero(p.precio)}</td>
+      <td>${p.dimensiones ? p.dimensiones : '-'}</td>
       <td>
         <span class="insignia-stock ${claseStock}">${p.stock} uds</span>
       </td>
@@ -1549,11 +1878,13 @@ async function crearNuevoPeluche(evento) {
   const campoNombre = document.getElementById('nombre-nuevo-peluche');
   const campoPrecio = document.getElementById('precio-nuevo-peluche');
   const campoStock = document.getElementById('stock-nuevo-peluche');
+  const campoDimensiones = document.getElementById('dimensiones-nuevo-peluche');
   const campoUrl = document.getElementById('url-nuevo-peluche');
 
   const nombre = campoNombre ? campoNombre.value.trim() : '';
   const precio = campoPrecio ? parseFloat(campoPrecio.value) : 0;
   const stock = campoStock ? parseInt(campoStock.value, 10) : 0;
+  const dimensiones = campoDimensiones ? campoDimensiones.value.trim() : '';
   const url = campoUrl ? campoUrl.value.trim() : '';
 
   if (!nombre || precio <= 0 || stock < 0) {
@@ -1565,6 +1896,7 @@ async function crearNuevoPeluche(evento) {
     nombre: nombre,
     precio: precio,
     stock: stock,
+    dimensiones: dimensiones,
     imagenUrl: url,
     url: url
   };

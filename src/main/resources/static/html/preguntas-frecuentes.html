@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes (FAQ) - Gordiluches Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('pelucheria_tema_oscuro') === 'true') {
+          document.documentElement.classList.add('tema-oscuro');
+          document.body ? document.body.classList.add('tema-oscuro') : document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('tema-oscuro'); });
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+
+  <!-- Barra de Navegación -->
+  <header class="barra-navegacion" id="barra-navegacion">
+    <div class="contenedor-navegacion">
+      <a href="../index.html" class="logotipo" id="logotipo">
+        <span class="icono-logo">🧸</span>
+        <span>Gordiluches</span>
+      </a>
+      <ul class="enlaces-navegacion" id="enlaces-navegacion">
+        <li id="nav-item-catalogo"><a href="../index.html#seccion-catalogo" class="enlace-navegacion">Catálogo</a></li>
+        <li id="nav-item-nosotros"><a href="nosotros.html" class="enlace-navegacion">Sobre nosotros</a></li>
+        <li id="nav-item-login"><a href="auth.html#seccion-autenticacion" class="enlace-navegacion">Iniciar Sesión</a></li>
+        <li id="nav-item-registro"><a href="auth.html#seccion-registro" class="enlace-navegacion">Registro</a></li>
+        <li id="nav-item-facturas"><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Mis Facturas</a></li>
+        <li id="nav-item-admin-enlace" style="display: none;"><a href="admin.html" class="enlace-navegacion">Panel Admin</a></li>
+        <li id="nav-item-carrito">
+          <button class="boton-carrito-nav" id="boton-abrir-carrito">
+            <span>🛒</span>
+            <span>Carrito</span>
+            <span class="contador-carrito" id="contador-carrito">0</span>
+          </button>
+        </li>
+        <li id="nav-item-usuario" style="display: none;">
+          <div class="caja-usuario-nav">
+            <span class="etiqueta-usuario-nav" id="texto-usuario-nav">Usuario</span>
+            <button class="boton-cerrar-sesion-nav" id="boton-cerrar-sesion" title="Cerrar Sesión">Salir</button>
+          </div>
+        </li>
+        <li id="nav-item-tema">
+          <button class="interruptor-tema" id="boton-alternar-tema" title="Alternar tema claro / oscuro" aria-label="Alternar modo oscuro">
+            <span class="icono-tema sol">☀️</span>
+            <span class="icono-tema luna">🌙</span>
+            <span class="perilla-tema"></span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="pagina-legal-main">
+    <section class="legal-hero">
+      <div class="contenedor-legal">
+        <span class="insignia-legal">💡 Centro de Ayuda y Soporte</span>
+        <h1 class="titulo-legal-hero">Preguntas Frecuentes (FAQ)</h1>
+        <p class="subtitulo-legal-hero">
+          Resolvemos al instante todas tus dudas sobre compras, envíos, cuidado de los peluches, pagos y facturas.
+        </p>
+        <div class="legal-fecha-actualizacion">
+          <span>Respuestas actualizadas periódicamente por nuestro equipo de atención</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="contenedor-legal">
+      <div class="legal-layout">
+        <!-- Navegación lateral de categorías FAQ -->
+        <aside class="legal-sidebar">
+          <div class="legal-indice-card">
+            <div class="legal-indice-titulo">Categorías de Ayuda</div>
+            <ul class="legal-indice-lista">
+              <li><a href="#faq-pedidos" class="legal-indice-link">🛍️ Compras y Pedidos</a></li>
+              <li><a href="#faq-envios" class="legal-indice-link">🚚 Envíos y Tiempos</a></li>
+              <li><a href="#faq-pagos" class="legal-indice-link">💳 Pagos y Facturación</a></li>
+              <li><a href="#faq-cuidado" class="legal-indice-link">🧼 Cuidado y Lavado</a></li>
+              <li><a href="#faq-mayoristas" class="legal-indice-link">📦 Ventas Mayoristas</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Bloque de Contenido FAQ -->
+        <article class="legal-contenido">
+          <!-- Compras y Pedidos -->
+          <section id="faq-pedidos" class="legal-seccion">
+            <h2>🛍️ Compras y Catálogo</h2>
+            
+            <div class="faq-acordeon">
+              <details class="faq-item" open>
+                <summary class="faq-pregunta">¿Cómo realizo una compra en Gordiluches?</summary>
+                <div class="faq-respuesta">
+                  <p>Es muy sencillo y seguro: explora nuestro <strong>Catálogo</strong> de peluches, selecciona la cantidad que deseas y haz clic en <em>"Añadir al Carrito"</em>. Cuando estés listo, abre tu carrito en la barra superior y pulsa <em>"Proceder al Pago"</em>. Podrás ingresar tus datos o iniciar sesión para emitir tu factura de inmediato.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿De qué material están fabricados los peluches?</summary>
+                <div class="faq-respuesta">
+                  <p>Todos nuestros personajes se confeccionan con telas de felpa ultrasuave (microfibra de alta densidad tipo plush) y están rellenos con <strong>100% vellón siliconado virgen</strong>. Son completamente hipoalergénicos, no tóxicos y aptos para niños y adultos.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿Qué hago si un peluche figura sin stock?</summary>
+                <div class="faq-respuesta">
+                  <p>Dado que nuestros peluches tienen confección artesanal, reponemos lotes cada semana. Puedes contactarnos por WhatsApp para reservar la próxima tanda de producción del modelo que te interesa.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Envíos y Entregas -->
+          <section id="faq-envios" class="legal-seccion">
+            <h2>🚚 Envíos y Logística</h2>
+
+            <div class="faq-acordeon">
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿A qué zonas realizan envíos y cuánto tardan?</summary>
+                <div class="faq-respuesta">
+                  <p>Llegamos a todo el territorio argentino. Los plazos habituales son:</p>
+                  <ul>
+                    <li><strong>Mendoza Capital y Gran Mendoza:</strong> 24 a 48 hs hábiles o retiro sin cargo en nuestro taller.</li>
+                    <li><strong>CABA, Buenos Aires, Córdoba y Santa Fe:</strong> 2 a 4 días hábiles.</li>
+                    <li><strong>Resto del país:</strong> 3 a 6 días hábiles mediante Correo Argentino y Andreani.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿Cómo puedo hacer el seguimiento de mi paquete?</summary>
+                <div class="faq-respuesta">
+                  <p>Una vez despachado el pedido, te enviaremos por correo y WhatsApp el número de guía postal con el enlace directo al portal de seguimiento del transportista para rastrearlo paso a paso.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿El embalaje protege adecuadamente al peluche?</summary>
+                <div class="faq-respuesta">
+                  <p>¡Absolutamente! Cada peluche viaja en una bolsa protectora hermética y en cajas de cartón corrugado reforzado para asegurar que llegue limpio, seco e intacto a tus manos.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Pagos y Facturación -->
+          <section id="faq-pagos" class="legal-seccion">
+            <h2>💳 Pagos y Facturación</h2>
+
+            <div class="faq-acordeon">
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿Cuáles son las formas de pago aceptadas?</summary>
+                <div class="faq-respuesta">
+                  <p>Aceptamos tarjetas de débito y crédito (Visa, Mastercard, American Express, Cabal), Mercado Pago, transferencias directas con CVU/CBU y pagos con saldo virtual.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿Dónde encuentro y descargo mi factura?</summary>
+                <div class="faq-respuesta">
+                  <p>Si tienes sesión iniciada, solo haz clic en <strong>"Mis Facturas"</strong> en la barra superior. Allí verás el historial cronológico de todas tus compras y podrás abrir o imprimir tu comprobante detallado en cualquier instante.</p>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿Emiten Factura A para empresas y responsables inscriptos?</summary>
+                <div class="faq-respuesta">
+                  <p>Por defecto nuestra plataforma emite Factura B a Consumidor Final. Si necesitas Factura A con discriminación de IVA, completa tus datos de CUIT en la orden y contáctanos a <code>facturacion@gordiluches.com</code>.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Cuidado y Mantenimiento -->
+          <section id="faq-cuidado" class="legal-seccion">
+            <h2>🧼 Cuidado y Lavado de Peluches</h2>
+
+            <div class="faq-acordeon">
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿Cómo debo lavar mi Gordiluche sin dañarlo?</summary>
+                <div class="faq-respuesta">
+                  <p>Para prolongar la ternura de su felpa y esponjosidad:</p>
+                  <ul>
+                    <li><strong>Lavado a mano (Recomendado):</strong> Usar agua tibia y jabón neutro. Frotar suavemente con un paño húmedo sobre las zonas manchadas.</li>
+                    <li><strong>Lavarropas:</strong> Colocar el peluche dentro de una funda de almohada o red protectora. Elegir ciclo delicado con agua fría y centrifugado muy suave (máximo 400 RPM).</li>
+                    <li><strong>Secado:</strong> Secar a la sombra en posición horizontal. <em>Nunca usar secarropas de calor directo ni planchar</em>.</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿Qué precauciones hay que tener con niños pequeños?</summary>
+                <div class="faq-respuesta">
+                  <p>Nuestros peluches cuentan con ojos y detalles íntegramente bordados a hilo sin piezas plásticas pequeñas desmontables, minimizando cualquier riesgo y haciéndolos aptos desde los primeros meses de vida.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- Mayoristas -->
+          <section id="faq-mayoristas" class="legal-seccion">
+            <h2>📦 Pedidos Especiales y Mayoristas</h2>
+
+            <div class="faq-acordeon">
+              <details class="faq-item">
+                <summary class="faq-pregunta">¿Hacen ventas por mayor para jugueterías o eventos?</summary>
+                <div class="faq-respuesta">
+                  <p>¡Sí! Ofrecemos listas de precios especiales para compras a partir de 15 unidades surtidas, así como confección personalizada para souvenirs corporativos y eventos especiales. Escríbenos a <code>ventas@gordiluches.com</code>.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <div class="legal-contacto-box">
+            <h4>¿No encontraste lo que buscabas?</h4>
+            <p>Nuestro equipo de soporte humano está en línea para ayudarte con lo que necesites:</p>
+            <p><strong>Chat Directo WhatsApp:</strong> +54 9 261 445-5678 &bull; <strong>Email:</strong> soporte@gordiluches.com</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modales requeridos por script.js -->
+  <div class="modal-superposicion" id="modal-carrito">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Carrito de Compras</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-carrito">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-carrito" class="lista-carrito"></div>
+        <div class="pie-modal-carrito">
+          <div class="fila-total">
+            <span>Total:</span>
+            <span class="monto-total" id="precio-total-carrito">$0</span>
+          </div>
+          <button class="boton-accion-completo" id="boton-checkout">Proceder al Pago</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-factura">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Comprobante de Factura</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-factura">&times;</button>
+      </div>
+      <div class="cuerpo-modal" id="cuerpo-factura">
+        <div class="caja-factura-detalle" id="detalle-factura"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-historial">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal" id="titulo-modal-historial">Historial de Facturas</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-historial">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-historial" class="lista-carrito"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
+
+  <!-- Footer Compartido -->
+  <footer class="pie-pagina" id="pie-pagina">
+    <div class="contenido-pie-pagina">
+      <div class="grid-pie-pagina">
+        <div class="columna-pie">
+          <a href="../index.html" class="logo-pie">
+            <span>🧸</span>
+            <span>Gordiluches</span>
+          </a>
+          <p class="descripcion-pie">
+            La tienda oficial de peluches artesanales, suaves y adorables. Calidad premium garantizada para acompañar cada momento especial.
+          </p>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Navegación</h4>
+          <ul class="lista-enlaces-pie">
+            <li><a href="../index.html#seccion-catalogo" class="enlace-pie">Catálogo</a></li>
+            <li><a href="nosotros.html" class="enlace-pie">Sobre nosotros</a></li>
+            <li><a href="auth.html#seccion-autenticacion" class="enlace-pie">Iniciar Sesión</a></li>
+            <li><a href="auth.html#seccion-registro" class="enlace-pie">Registro de Clientes</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Legal</h4>
+          <ul class="lista-enlaces-pie">
+            <li><a href="terminos-condiciones.html" class="enlace-pie">Términos y Condiciones del Servicio</a></li>
+            <li><a href="politica-privacidad.html" class="enlace-pie">Política de Privacidad</a></li>
+            <li><a href="garantia-devoluciones.html" class="enlace-pie">Garantía y Devoluciones</a></li>
+            <li><a href="preguntas-frecuentes.html" class="enlace-pie enlace-activo-legal">Preguntas Frecuentes</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Redes Sociales</h4>
+          <ul class="lista-redes-pie">
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+                <span>@Gordiluches_Oficial</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68 6.34 6.34 0 0 0 9.34 22a6.34 6.34 0 0 0 6.33-6.32V8.6a8.28 8.28 0 0 0 4.84 1.55v-3.46z"/></svg></span>
+                <span>@GordiluchesTok</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>
+                <span>/GordiluchesPelucheria</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <span>+54 9 261 445-5678</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="barra-inferior-pie">
+        <span>&copy; 2026 Gordiluches Oficial. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

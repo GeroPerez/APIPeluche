@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Términos y Condiciones del Servicio - Gordiluches Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('pelucheria_tema_oscuro') === 'true') {
+          document.documentElement.classList.add('tema-oscuro');
+          document.body ? document.body.classList.add('tema-oscuro') : document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('tema-oscuro'); });
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+
+  <!-- Barra de Navegación -->
+  <header class="barra-navegacion" id="barra-navegacion">
+    <div class="contenedor-navegacion">
+      <a href="../index.html" class="logotipo" id="logotipo">
+        <span class="icono-logo">🧸</span>
+        <span>Gordiluches</span>
+      </a>
+      <ul class="enlaces-navegacion" id="enlaces-navegacion">
+        <li id="nav-item-catalogo"><a href="../index.html#seccion-catalogo" class="enlace-navegacion">Catálogo</a></li>
+        <li id="nav-item-nosotros"><a href="nosotros.html" class="enlace-navegacion">Sobre nosotros</a></li>
+        <li id="nav-item-login"><a href="auth.html#seccion-autenticacion" class="enlace-navegacion">Iniciar Sesión</a></li>
+        <li id="nav-item-registro"><a href="auth.html#seccion-registro" class="enlace-navegacion">Registro</a></li>
+        <li id="nav-item-facturas"><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Mis Facturas</a></li>
+        <li id="nav-item-admin-enlace" style="display: none;"><a href="admin.html" class="enlace-navegacion">Panel Admin</a></li>
+        <li id="nav-item-carrito">
+          <button class="boton-carrito-nav" id="boton-abrir-carrito">
+            <span>🛒</span>
+            <span>Carrito</span>
+            <span class="contador-carrito" id="contador-carrito">0</span>
+          </button>
+        </li>
+        <li id="nav-item-usuario" style="display: none;">
+          <div class="caja-usuario-nav">
+            <span class="etiqueta-usuario-nav" id="texto-usuario-nav">Usuario</span>
+            <button class="boton-cerrar-sesion-nav" id="boton-cerrar-sesion" title="Cerrar Sesión">Salir</button>
+          </div>
+        </li>
+        <li id="nav-item-tema">
+          <button class="interruptor-tema" id="boton-alternar-tema" title="Alternar tema claro / oscuro" aria-label="Alternar modo oscuro">
+            <span class="icono-tema sol">☀️</span>
+            <span class="icono-tema luna">🌙</span>
+            <span class="perilla-tema"></span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="pagina-legal-main">
+    <section class="legal-hero">
+      <div class="contenedor-legal">
+        <span class="insignia-legal">📜 Marco Regulatorio y Legal</span>
+        <h1 class="titulo-legal-hero">Términos y Condiciones del Servicio</h1>
+        <p class="subtitulo-legal-hero">
+          Normas y pautas de contratación que rigen la navegación y compra en la plataforma oficial de <strong>Gordiluches S.R.L.</strong>
+        </p>
+        <div class="legal-fecha-actualizacion">
+          <span>Última revisión legal: 15 de Noviembre de 2026 &bull; Vigencia 2026/2027</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="contenedor-legal">
+      <div class="legal-layout">
+        <!-- Navegación lateral de artículos -->
+        <aside class="legal-sidebar">
+          <div class="legal-indice-card">
+            <div class="legal-indice-titulo">Índice de Cláusulas</div>
+            <ul class="legal-indice-lista">
+              <li><a href="#introduccion" class="legal-indice-link">1. Introducción y Empresa</a></li>
+              <li><a href="#registro" class="legal-indice-link">2. Cuentas y Registro</a></li>
+              <li><a href="#pedidos-precios" class="legal-indice-link">3. Catálogo y Precios</a></li>
+              <li><a href="#pagos-facturacion" class="legal-indice-link">4. Pagos y Facturación</a></li>
+              <li><a href="#envios" class="legal-indice-link">5. Envíos y Entregas</a></li>
+              <li><a href="#propiedad-intelectual" class="legal-indice-link">6. Propiedad Intelectual</a></li>
+              <li><a href="#jurisdiccion" class="legal-indice-link">7. Ley y Jurisdicción</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Bloque de Contenido Legal -->
+        <article class="legal-contenido">
+          <div class="legal-alerta-info">
+            <span class="icono-alerta">ℹ️</span>
+            <div>
+              <strong>Importante para compradores:</strong> Al navegar por Gordiluches o completar una orden en nuestro sistema, aceptas de forma irrevocable los presentes términos del servicio comercial conforme a la legislación nacional vigente de comercio electrónico.
+            </div>
+          </div>
+
+          <section id="introduccion" class="legal-seccion">
+            <h2>1. Introducción y Datos de la Empresa</h2>
+            <p>
+              El presente documento establece las condiciones contractuales aplicables a todas las compras realizadas a través del sitio web oficial de <strong>Gordiluches</strong>, propiedad de <strong>Gordiluches S.R.L.</strong>, CUIT 30-71894523-9, con domicilio legal en Av. Las Heras 1240, Mendoza Capital, República Argentina.
+            </p>
+            <p>
+              Gordiluches se especializa en la confección artesanal, empaque y distribución de peluches de felpa hipoalergénica y artículos de colección y regalo.
+            </p>
+          </section>
+
+          <section id="registro" class="legal-seccion">
+            <h2>2. Cuentas de Usuario y Capacidad Legal</h2>
+            <p>
+              Para efectuar compras y acceder al historial de comprobantes digitales, el usuario puede registrarse proporcionando datos fidedignos (nombre completo, correo electrónico, documento y teléfono de contacto).
+            </p>
+            <ul>
+              <li><strong>Mayoría de edad:</strong> Para operar en la tienda se requiere tener al menos 18 años o contar con autorización de tutores legales.</li>
+              <li><strong>Custodia de credenciales:</strong> Cada titular es responsable exclusivo de mantener la confidencialidad de su contraseña y de las operaciones cursadas en su perfil.</li>
+              <li><strong>Veracidad:</strong> Nos reservamos el derecho de cancelar o suspender cuentas con datos falsos o sospecha de maniobras fraudulentas.</li>
+            </ul>
+          </section>
+
+          <section id="pedidos-precios" class="legal-seccion">
+            <h2>3. Catálogo, Stock y Precios</h2>
+            <p>
+              Todos los productos exhibidos en nuestro catálogo digital cuentan con especificaciones sobre dimensiones, materiales de relleno (100% vellón siliconado virgen) y sugerencias de edad:
+            </p>
+            <ul>
+              <li><strong>Precios:</strong> Todos los precios indicados están expresados en pesos argentinos (ARS), incluyen el Impuesto al Valor Agregado (IVA) y no contemplan costos de transporte adicionales a menos que se indique "Envío Bonificado".</li>
+              <li><strong>Disponibilidad:</strong> Las órdenes quedan sujetas a la verificación física de stock en nuestro depósito central o a los tiempos de confección artesanal comunicados al momento de la compra.</li>
+              <li><strong>Fotografías ilustrativas:</strong> Al tratarse de artículos con acabados manuales, pueden apreciarse ligeras variaciones milimétricas que acentúan el carácter artesanal de cada ejemplar.</li>
+            </ul>
+          </section>
+
+          <section id="pagos-facturacion" class="legal-seccion">
+            <h2>4. Medios de Pago y Facturación Electrónica</h2>
+            <p>
+              Las transacciones son procesadas a través de pasarelas de pago seguras homologadas y estándares de cifrado TLS 1.3:
+            </p>
+            <ul>
+              <li><strong>Formas de cobro:</strong> Tarjetas de crédito, débito, transferencias bancarias directas mediante CVU/CBU y billeteras virtuales asociadas.</li>
+              <li><strong>Emisión de comprobante:</strong> Cada orden genera automáticamente una factura electrónica (Factura B para consumidores finales) accesible en cualquier momento desde el módulo "Mis Facturas" del cliente.</li>
+              <li><strong>Aprobación:</strong> El pedido se confirma una vez que el procesador de pagos valide los fondos de manera fehaciente.</li>
+            </ul>
+          </section>
+
+          <section id="envios" class="legal-seccion">
+            <h2>5. Política de Envíos y Tiempos de Entrega</h2>
+            <p>
+              Realizamos envíos a todo el territorio nacional mediante operadores logísticos certificados:
+            </p>
+            <ul>
+              <li><strong>Plazos de despacho:</strong> Las órdenes son despachadas dentro de las 24 a 48 horas hábiles posteriores a la acreditación del pago.</li>
+              <li><strong>Seguimiento:</strong> El cliente recibirá un código alfanumérico para monitorear el estado del paquete en tiempo real.</li>
+              <li><strong>Recepción:</strong> La entrega puede ser recibida por cualquier persona mayor de 18 años que se encuentre en el domicilio con documento de identidad.</li>
+            </ul>
+          </section>
+
+          <section id="propiedad-intelectual" class="legal-seccion">
+            <h2>6. Propiedad Intelectual y Derechos Reservados</h2>
+            <p>
+              Las marcas comerciales, logotipos distintivos, diseños de personajes peluche, nombres de modelos (Gordiluches&trade;), códigos informáticos, gráficos y textos contenidos en este sitio son propiedad exclusiva de Gordiluches S.R.L. y se encuentran protegidos por la Ley Nacional de Propiedad Intelectual N° 11.723. Queda expresamente prohibida su reproducción sin consentimiento escrito previo.
+            </p>
+          </section>
+
+          <section id="jurisdiccion" class="legal-seccion">
+            <h2>7. Modificaciones, Ley Aplicable y Jurisdicción</h2>
+            <p>
+              Gordiluches S.R.L. se reserva el derecho de modificar estos términos en cualquier momento, publicando la versión actualizada en este mismo enlace. Las relaciones comerciales se regirán por las leyes de la República Argentina y la Ley de Defensa del Consumidor N° 24.240, sometiéndose ante cualquier controversia a los Tribunales Ordinarios de la Ciudad de Mendoza.
+            </p>
+          </section>
+
+          <div class="legal-contacto-box">
+            <h4>¿Dudas sobre estos términos de servicio?</h4>
+            <p>Puedes escribir a nuestra oficina de cumplimiento legal y atención al cliente:</p>
+            <p><strong>Email:</strong> legal@gordiluches.com &bull; <strong>Tel:</strong> +54 9 261 445-5678 (Lun a Vie de 9:00 a 18:00 hs)</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modales requeridos por script.js para evitar errores -->
+  <div class="modal-superposicion" id="modal-carrito">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Carrito de Compras</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-carrito">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-carrito" class="lista-carrito"></div>
+        <div class="pie-modal-carrito">
+          <div class="fila-total">
+            <span>Total:</span>
+            <span class="monto-total" id="precio-total-carrito">$0</span>
+          </div>
+          <button class="boton-accion-completo" id="boton-checkout">Proceder al Pago</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-factura">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Comprobante de Factura</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-factura">&times;</button>
+      </div>
+      <div class="cuerpo-modal" id="cuerpo-factura">
+        <div class="caja-factura-detalle" id="detalle-factura"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-historial">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal" id="titulo-modal-historial">Historial de Facturas</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-historial">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-historial" class="lista-carrito"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
+
+  <!-- Footer Compartido -->
+  <footer class="pie-pagina" id="pie-pagina">
+    <div class="contenido-pie-pagina">
+      <div class="grid-pie-pagina">
+        <div class="columna-pie">
+          <a href="../index.html" class="logo-pie">
+            <span>🧸</span>
+            <span>Gordiluches</span>
+          </a>
+          <p class="descripcion-pie">
+            La tienda oficial de peluches artesanales, suaves y adorables. Calidad premium garantizada para acompañar cada momento especial.
+          </p>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Navegación</h4>
+          <ul class="lista-enlaces-pie">
+            <li><a href="../index.html#seccion-catalogo" class="enlace-pie">Catálogo</a></li>
+            <li><a href="nosotros.html" class="enlace-pie">Sobre nosotros</a></li>
+            <li><a href="auth.html#seccion-autenticacion" class="enlace-pie">Iniciar Sesión</a></li>
+            <li><a href="auth.html#seccion-registro" class="enlace-pie">Registro de Clientes</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Legal</h4>
+          <ul class="lista-enlaces-pie">
+            <li><a href="terminos-condiciones.html" class="enlace-pie enlace-activo-legal">Términos y Condiciones del Servicio</a></li>
+            <li><a href="politica-privacidad.html" class="enlace-pie">Política de Privacidad</a></li>
+            <li><a href="garantia-devoluciones.html" class="enlace-pie">Garantía y Devoluciones</a></li>
+            <li><a href="preguntas-frecuentes.html" class="enlace-pie">Preguntas Frecuentes</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Redes Sociales</h4>
+          <ul class="lista-redes-pie">
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+                <span>@Gordiluches_Oficial</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68 6.34 6.34 0 0 0 9.34 22a6.34 6.34 0 0 0 6.33-6.32V8.6a8.28 8.28 0 0 0 4.84 1.55v-3.46z"/></svg></span>
+                <span>@GordiluchesTok</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>
+                <span>/GordiluchesPelucheria</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <span>+54 9 261 445-5678</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="barra-inferior-pie">
+        <span>&copy; 2026 Gordiluches Oficial. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
