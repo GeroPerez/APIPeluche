@@ -15,6 +15,7 @@ public class Producto {
     private String imagenUrl;
     private String dimensiones;
 
+    public Producto(Long id, String nombre, float precio, int stock) {
     @ManyToMany(mappedBy = "productos")
     @JsonIgnore 
     private List<Compra> compra;
