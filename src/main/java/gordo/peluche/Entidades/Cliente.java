@@ -16,14 +16,14 @@ public class Cliente {
     private String correo;
     private String contrasena;
     private String direccion;
-    private String cuit;
+    private long cuit;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore 
     private List<Compra> compras;
 
     public Cliente(Long id, String nombre, String apellido, String correo, String contrasena, String direccion,
-            String cuit, List<Compra> compras) {
+        long cuit, List<Compra> compras) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -85,11 +85,11 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public String getCuit() {
+    public long getCuit() {
         return cuit;
     }
 
-    public void setCuit(String cuit) {
+    public void setCuit(long cuit) {
         this.cuit = cuit;
     }
 
