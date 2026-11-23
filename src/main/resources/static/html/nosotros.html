@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros - Peluchería Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('pelucheria_tema_oscuro') === 'true') {
+          document.documentElement.classList.add('tema-oscuro');
+          document.body ? document.body.classList.add('tema-oscuro') : document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('tema-oscuro'); });
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+
+  <header class="barra-navegacion" id="barra-navegacion">
+    <div class="contenedor-navegacion">
+      <a href="../index.html" class="logotipo" id="logotipo">
+        <img src="../images/Gordi Luches.png" class="imagen-logo" alt="imagen logo">
+      </a>
+      <ul class="enlaces-navegacion" id="enlaces-navegacion">
+        <li id="nav-item-catalogo"><a href="../index.html#seccion-catalogo" class="enlace-navegacion">Catálogo</a></li>
+        <li id="nav-item-nosotros"><a href="nosotros.html" class="enlace-navegacion">Sobre nosotros</a></li>
+        <li id="nav-item-login"><a href="auth.html#seccion-autenticacion" class="enlace-navegacion">Iniciar Sesión</a></li>
+        <li id="nav-item-registro"><a href="auth.html#seccion-registro" class="enlace-navegacion">Registro</a></li>
+        <li id="nav-item-facturas"><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Mis Facturas</a></li>
+        <li id="nav-item-admin-enlace" style="display: none;"><a href="admin.html" class="enlace-navegacion">Panel Admin</a></li>
+        <li id="nav-item-carrito">
+          <button class="boton-carrito-nav" id="boton-abrir-carrito">
+            <span>🛒</span>
+            <span>Carrito</span>
+            <span class="contador-carrito" id="contador-carrito">0</span>
+          </button>
+        </li>
+        <li id="nav-item-usuario" style="display: none;">
+          <div class="caja-usuario-nav">
+            <span class="etiqueta-usuario-nav" id="texto-usuario-nav">Usuario</span>
+            <button class="boton-cerrar-sesion-nav" id="boton-cerrar-sesion" title="Cerrar Sesión">Salir</button>
+          </div>
+        </li>
+        <li id="nav-item-tema">
+          <button class="interruptor-tema" id="boton-alternar-tema" title="Alternar tema claro / oscuro" aria-label="Alternar modo oscuro">
+            <span class="icono-tema sol">☀️</span>
+            <span class="icono-tema luna">🌙</span>
+            <span class="perilla-tema"></span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main style="flex: 1;">
+    <!-- Hero / Presentación -->
+    <section class="seccion-nosotros-hero">
+      <div class="contenedor-nosotros">
+        <span class="insignia-nosotros">🧸 Fábrica Artesanal &bull; Desde 2018</span>
+        <h1 class="titulo-nosotros-hero">El Arte de Crear Abrazos Eternos</h1>
+        <p class="subtitulo-nosotros-hero">
+          En <strong>Gordiluches</strong> diseñamos y confeccionamos a mano peluches con personalidad única, materiales hipoalergénicos de calidad premium y una dosis inagotable de ternura para acompañar cada rincón de tu vida.
+        </p>
+
+        <div class="grid-metricas-nosotros">
+          <div class="tarjeta-metrica-nosotros">
+            <div class="numero-metrica-nosotros">+15.000</div>
+            <div class="etiqueta-metrica-nosotros">Sonrisas entregadas</div>
+          </div>
+          <div class="tarjeta-metrica-nosotros">
+            <div class="numero-metrica-nosotros">100%</div>
+            <div class="etiqueta-metrica-nosotros">Relleno siliconado virgen</div>
+          </div>
+          <div class="tarjeta-metrica-nosotros">
+            <div class="numero-metrica-nosotros">20+</div>
+            <div class="etiqueta-metrica-nosotros">Modelos coleccionables</div>
+          </div>
+          <div class="tarjeta-metrica-nosotros">
+            <div class="numero-metrica-nosotros">4.9 ★</div>
+            <div class="etiqueta-metrica-nosotros">Calificación de clientes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Historia y Filosofía -->
+    <section class="seccion-historia-nosotros">
+      <div class="contenedor-nosotros">
+        <div class="bloque-historia-grid">
+          <div class="contenido-historia">
+            <h2>Nuestra Pasión por los Peluches</h2>
+            <p>
+              Todo comenzó en un acogedor taller en el corazón de Mendoza, con una máquina de coser clásica y el sueño de devolver la calidez artesanal a los juguetes. En una época dominada por la producción industrial en serie, decidimos hacer una pausa y crear peluches con peso real, texturas aterciopeladas y proporciones adorables.
+            </p>
+            <p>
+              Cada gordiluche pasa por un proceso de diseño meticuloso donde seleccionamos telas ultra suaves, reforzamos costuras dobles de alta resistencia y esculpimos rostros que transmiten alegría instantánea. No vendemos simplemente peluches: creamos compañeros de descanso, guardianes de cuartos y el regalo ideal para quien más quieres.
+            </p>
+            <p>
+              Hoy nos enorgullece enviar nuestros personajes a todo el país manteniendo siempre el espíritu artesanal y el amor por los detalles que nos vio nacer.
+            </p>
+          </div>
+
+          <div class="caja-imagen-historia">
+            <span class="emoji-gigante">🐼</span>
+            <blockquote>
+              "Un buen peluche es un abrazo esponjoso que dura para siempre."
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Valores y Pilares -->
+    <section class="seccion-valores-nosotros">
+      <div class="contenedor-nosotros">
+        <div class="cabecera-bloque-nosotros">
+          <h2>¿Por Qué Elegir Gordiluches?</h2>
+          <p>Nos dedicamos a cuidar cada aspecto técnico y emocional para que vivas una experiencia mágica.</p>
+        </div>
+
+        <div class="grid-valores-nosotros">
+          <div class="tarjeta-valor-nosotros">
+            <span class="icono-valor-nosotros">✨</span>
+            <h3>Suavidad Extraordinaria</h3>
+            <p>Utilizamos felpa de microfibra de densidad superior, ultra suave al tacto y diseñada para mantener su textura esponjosa lavado tras lavado.</p>
+          </div>
+          <div class="tarjeta-valor-nosotros">
+            <span class="icono-valor-nosotros">🛡️</span>
+            <h3>Hipoalergénico y Seguro</h3>
+            <p>Materiales testeados libres de tóxicos y con ojos de seguridad fijados a prueba de tirones, 100% seguros para niños pequeños y adultos.</p>
+          </div>
+          <div class="tarjeta-valor-nosotros">
+            <span class="icono-valor-nosotros">🌱</span>
+            <h3>Compromiso Sustentable</h3>
+            <p>Nuestros empaques son eco-friendly y optimizamos al máximo los patrones de corte para reducir el desperdicio textil a menos del 3%.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proceso Artesanal -->
+    <section class="seccion-proceso-nosotros">
+      <div class="contenedor-nosotros">
+        <div class="cabecera-bloque-nosotros">
+          <h2>Nuestro Proceso de Creación</h2>
+          <p>Del primer boceto en papel hasta llegar a tus brazos, así fabricamos cada personaje.</p>
+        </div>
+
+        <div class="grid-pasos-proceso">
+          <div class="tarjeta-paso-proceso">
+            <div class="numero-paso-proceso">1</div>
+            <h4>Diseño Exclusivo</h4>
+            <p>Ilustramos y modelamos tridimensionalmente la anatomía gordita y expresiva de cada especie.</p>
+          </div>
+          <div class="tarjeta-paso-proceso">
+            <div class="numero-paso-proceso">2</div>
+            <h4>Corte de Precisión</h4>
+            <p>Patronaje individual de telas aterciopeladas cuidando el sentido del pelo y las caídas de forma.</p>
+          </div>
+          <div class="tarjeta-paso-proceso">
+            <div class="numero-paso-proceso">3</div>
+            <h4>Relleno Anatómico</h4>
+            <p>Insufflado gradual con vellón siliconado virgen que recupera su volumen y esponjosidad original.</p>
+          </div>
+          <div class="tarjeta-paso-proceso">
+            <div class="numero-paso-proceso">4</div>
+            <h4>Control de Calidad</h4>
+            <p>Inspección minuciosa de costuras, bordados y cepillado final antes de preparar el paquete.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Llamado a la Acción -->
+    <section class="seccion-cta-nosotros">
+      <div class="contenedor-nosotros">
+        <div class="caja-cta-nosotros">
+          <h2>¿Listo para Adoptar a tu Nuevo Compañero?</h2>
+          <p>Explora nuestro catálogo completo de peluches artesanales y encuentra al gordiluche perfecto para ti.</p>
+          <a href="../index.html#seccion-catalogo" class="boton-cta-nosotros">Ver Catálogo de Peluches</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-superposicion" id="modal-factura">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Comprobante de Factura</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-factura">&times;</button>
+      </div>
+      <div class="cuerpo-modal" id="cuerpo-factura">
+        <div class="caja-factura-detalle" id="detalle-factura"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-historial">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal" id="titulo-modal-historial">Historial de Facturas</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-historial">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-historial" class="lista-carrito"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
+
+  <footer class="pie-pagina" id="pie-pagina">
+    <div class="contenido-pie-pagina">
+      <div class="grid-pie-pagina">
+        <div class="columna-pie">
+          <a href="../index.html" class="logo-pie">
+            <span>🧸</span>
+            <span>Gordiluches</span>
+          </a>
+          <p class="descripcion-pie">
+            La tienda oficial de peluches artesanales, suaves y adorables. Calidad premium garantizada para acompañar cada momento especial.
+          </p>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Navegación</h4>
+          <ul class="lista-enlaces-pie">
+            <li><a href="../index.html#seccion-catalogo" class="enlace-pie">Catálogo</a></li>
+            <li><a href="nosotros.html" class="enlace-pie">Sobre nosotros</a></li>
+            <li><a href="auth.html#seccion-autenticacion" class="enlace-pie">Iniciar Sesión</a></li>
+            <li><a href="auth.html#seccion-registro" class="enlace-pie">Registro de Clientes</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Legal</h4>
+          <ul class="lista-enlaces-pie">
+            <li><a href="terminos-condiciones.html" class="enlace-pie">Términos y Condiciones del Servicio</a></li>
+            <li><a href="politica-privacidad.html" class="enlace-pie">Política de Privacidad</a></li>
+            <li><a href="garantia-devoluciones.html" class="enlace-pie">Garantía y Devoluciones</a></li>
+            <li><a href="preguntas-frecuentes.html" class="enlace-pie">Preguntas Frecuentes</a></li>
+          </ul>
+        </div>
+
+                <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Redes Sociales</h4>
+          <ul class="lista-redes-pie">
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+                <span>@Gordiluches_Oficial</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68 6.34 6.34 0 0 0 9.34 22a6.34 6.34 0 0 0 6.33-6.32V8.6a8.28 8.28 0 0 0 4.84 1.55v-3.46z"/></svg></span>
+                <span>@GordiluchesTok</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>
+                <span>/GordiluchesPelucheria</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <span>+54 9 261 445-5678</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="barra-inferior-pie">
+        <span>&copy; 2026 Gordiluches Oficial. Todos los derechos reservados.</span>
+        
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

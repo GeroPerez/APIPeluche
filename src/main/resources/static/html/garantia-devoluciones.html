@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garantía y Devoluciones - Gordiluches Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('pelucheria_tema_oscuro') === 'true') {
+          document.documentElement.classList.add('tema-oscuro');
+          document.body ? document.body.classList.add('tema-oscuro') : document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('tema-oscuro'); });
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+
+  <!-- Barra de Navegación -->
+  <header class="barra-navegacion" id="barra-navegacion">
+    <div class="contenedor-navegacion">
+      <a href="../index.html" class="logotipo" id="logotipo">
+        <img src="../images/Gordi Luches.png" class="imagen-logo" alt="imagen logo">
+      </a>
+      <ul class="enlaces-navegacion" id="enlaces-navegacion">
+        <li id="nav-item-catalogo"><a href="../index.html#seccion-catalogo" class="enlace-navegacion">Catálogo</a></li>
+        <li id="nav-item-nosotros"><a href="nosotros.html" class="enlace-navegacion">Sobre nosotros</a></li>
+        <li id="nav-item-login"><a href="auth.html#seccion-autenticacion" class="enlace-navegacion">Iniciar Sesión</a></li>
+        <li id="nav-item-registro"><a href="auth.html#seccion-registro" class="enlace-navegacion">Registro</a></li>
+        <li id="nav-item-facturas"><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Mis Facturas</a></li>
+        <li id="nav-item-admin-enlace" style="display: none;"><a href="admin.html" class="enlace-navegacion">Panel Admin</a></li>
+        <li id="nav-item-carrito">
+          <button class="boton-carrito-nav" id="boton-abrir-carrito">
+            <span>🛒</span>
+            <span>Carrito</span>
+            <span class="contador-carrito" id="contador-carrito">0</span>
+          </button>
+        </li>
+        <li id="nav-item-usuario" style="display: none;">
+          <div class="caja-usuario-nav">
+            <span class="etiqueta-usuario-nav" id="texto-usuario-nav">Usuario</span>
+            <button class="boton-cerrar-sesion-nav" id="boton-cerrar-sesion" title="Cerrar Sesión">Salir</button>
+          </div>
+        </li>
+        <li id="nav-item-tema">
+          <button class="interruptor-tema" id="boton-alternar-tema" title="Alternar tema claro / oscuro" aria-label="Alternar modo oscuro">
+            <span class="icono-tema sol">☀️</span>
+            <span class="icono-tema luna">🌙</span>
+            <span class="perilla-tema"></span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="pagina-legal-main">
+    <section class="legal-hero">
+      <div class="contenedor-legal">
+        <span class="insignia-legal">✨ Promesa de Calidad Gordiluches</span>
+        <h1 class="titulo-legal-hero">Garantía, Cambios y Devoluciones</h1>
+        <p class="subtitulo-legal-hero">
+          Tu tranquilidad y felicidad son nuestra máxima prioridad. Te respaldamos con una política clara, justa y sin complicaciones.
+        </p>
+        <div class="legal-fecha-actualizacion">
+          <span>Garantía de Satisfacción Total por 30 Días Corridos &bull; Cobertura Nacional</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="contenedor-legal">
+      <!-- Tarjetas de Beneficios Clave -->
+      <div class="grid-beneficios-garantia">
+        <div class="tarjeta-beneficio-garantia">
+          <div class="icono-beneficio">🔄</div>
+          <h3>30 Días de Cambio</h3>
+          <p>¿Prefieres otro personaje o tamaño? Tienes 30 días corridos para solicitar el cambio de tu peluche.</p>
+        </div>
+        <div class="tarjeta-beneficio-garantia">
+          <div class="icono-beneficio">🛡️</div>
+          <h3>Garantía de Costuras</h3>
+          <p>Garantía de 6 meses contra cualquier falla de costura, desprendimiento de ojos bordados o confección.</p>
+        </div>
+        <div class="tarjeta-beneficio-garantia">
+          <div class="icono-beneficio">🌿</div>
+          <h3>100% Hipoalergénico</h3>
+          <p>Certificación de telas afelpadas y vellón siliconado virgen seguro para bebés y pieles sensibles.</p>
+        </div>
+        <div class="tarjeta-beneficio-garantia">
+          <div class="icono-beneficio">💰</div>
+          <h3>Reembolso Ágil</h3>
+          <p>Devolución garantizada en el mismo medio de pago dentro de las 72 hs hábiles de recibido el artículo.</p>
+        </div>
+      </div>
+
+      <div class="legal-layout">
+        <!-- Navegación lateral de artículos -->
+        <aside class="legal-sidebar">
+          <div class="legal-indice-card">
+            <div class="legal-indice-titulo">Temas de Garantía</div>
+            <ul class="legal-indice-lista">
+              <li><a href="#cobertura-garantia" class="legal-indice-link">1. Cobertura de la Garantía</a></li>
+              <li><a href="#derecho-arrepentimiento" class="legal-indice-link">2. Botón de Arrepentimiento</a></li>
+              <li><a href="#condiciones-cambio" class="legal-indice-link">3. Requisitos para el Cambio</a></li>
+              <li><a href="#paso-a-paso" class="legal-indice-link">4. Procedimiento Paso a Paso</a></li>
+              <li><a href="#costos-envio" class="legal-indice-link">5. Costos de Logística Inversa</a></li>
+              <li><a href="#exclusiones" class="legal-indice-link">6. Casos Excluidos</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Bloque de Contenido Legal -->
+        <article class="legal-contenido">
+          <div class="legal-alerta-info">
+            <span class="icono-alerta">🧸</span>
+            <div>
+              <strong>Calidad de Taller Artesanal:</strong> Cada Gordiluche pasa por un estricto control de calidad manual antes de ser empacado en su bolsa protectora y caja reforzada. Si notas cualquier detalle irregular, nos encargamos de solucionarlo de inmediato.
+            </div>
+          </div>
+
+          <section id="cobertura-garantia" class="legal-seccion">
+            <h2>1. Cobertura de la Garantía de Fabricación</h2>
+            <p>
+              Todos nuestros peluches cuentan con una <strong>Garantía Oficial de 6 meses</strong> desde la fecha de recepción contra defectos de fabricación o fallas en los materiales:
+            </p>
+            <ul>
+              <li>Apertura accidental de costuras en condiciones de uso habitual.</li>
+              <li>Defectos en fijaciones de apliques o bordados de ojos y expresiones.</li>
+              <li>Deformación inusual del vellón de relleno siliconado sin causa de lavado inadecuado.</li>
+              <li>Desprendimiento de cremalleras o etiquetas de autenticidad originales.</li>
+            </ul>
+          </section>
+
+          <section id="derecho-arrepentimiento" class="legal-seccion">
+            <h2>2. Derecho de Revocación y Arrepentimiento</h2>
+            <p>
+              En cumplimiento del Artículo 34 de la Ley 24.240 de Defensa del Consumidor y la Resolución 424/2020:
+            </p>
+            <p>
+              El comprador tiene derecho a revocar la compra dentro de los <strong>10 (diez) días corridos</strong> contados a partir de la fecha en que se entregue el producto. Para ejercer este derecho, basta con comunicarlo a través de nuestro correo o botón de contacto, y se coordinará el retiro del producto sin costo para el comprador y el reintegro total del importe abonado.
+            </p>
+          </section>
+
+          <section id="condiciones-cambio" class="legal-seccion">
+            <h2>3. Requisitos para Cambios y Devoluciones</h2>
+            <p>
+              Para que la devolución o cambio sea aceptado por nuestro equipo de inspección:
+            </p>
+            <ul>
+              <li>El peluche debe encontrarse en perfectas condiciones higiénicas, sin manchas, olores a perfume o humedad, pelos de mascotas ni señales de uso intensivo.</li>
+              <li>Debe conservar sus etiquetas identificatorias de cartulina originales adheridas y, en lo posible, el envoltorio protector de fábrica.</li>
+              <li>Se debe adjuntar o indicar el número de orden de compra o el comprobante de Factura Electrónica emitido por Gordiluches.</li>
+            </ul>
+          </section>
+
+          <section id="paso-a-paso" class="legal-seccion">
+            <h2>4. Procedimiento de Gestión: Paso a Paso</h2>
+            <div class="caja-pasos-garantia">
+              <div class="item-paso-garantia">
+                <span class="numero-paso">1</span>
+                <div>
+                  <h4>Notifica tu Solicitud</h4>
+                  <p>Envía un mensaje a <code>devoluciones@gordiluches.com</code> o vía WhatsApp con tu número de factura y fotos del peluche o motivo del cambio.</p>
+                </div>
+              </div>
+              <div class="item-paso-garantia">
+                <span class="numero-paso">2</span>
+                <div>
+                  <h4>Generación de Etiqueta de Correo</h4>
+                  <p>En menos de 24 hs hábiles te enviamos una etiqueta prepaga de Correo Argentino / Andreani para que entregues el paquete en la sucursal más cercana o programemos el retiro a domicilio.</p>
+                </div>
+              </div>
+              <div class="item-paso-garantia">
+                <span class="numero-paso">3</span>
+                <div>
+                  <h4>Recepción y Resolución</h4>
+                  <p>Una vez recibido en nuestro taller de Mendoza, se verifica el producto en 48 hs y se despacha el nuevo peluche o se autoriza la restitución del dinero a tu tarjeta o cuenta bancaria.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="costos-envio" class="legal-seccion">
+            <h2>5. Costos de Logística de Envío</h2>
+            <ul>
+              <li><strong>Por falla de fábrica o revocación legal de 10 días:</strong> El costo de transporte es 100% asumido por Gordiluches S.R.L.</li>
+              <li><strong>Por cambio de modelo o preferencia estética voluntaria luego del día 10:</strong> El cliente abona el flete de retorno del nuevo producto seleccionado, manteniendo la bonificación del primer cambio en sucursales autorizadas.</li>
+            </ul>
+          </section>
+
+          <section id="exclusiones" class="legal-seccion">
+            <h2>6. Exclusiones de la Garantía</h2>
+            <p>
+              La garantía no cubre desperfectos originados por:
+            </p>
+            <ul>
+              <li>Quemaduras, cortes deliberados con objetos punzantes o mordeduras severas de animales.</li>
+              <li>Lavado en lavarropas con centrifugado agresivo, secado a calor directo en secarropas o uso de lavandina y químicos decolorantes no aptos para felpas.</li>
+              <li>Modificaciones, desarmes o intervenciones artesanales ajenas a nuestro taller oficial.</li>
+            </ul>
+          </section>
+
+          <div class="legal-contacto-box">
+            <h4>¿Necesitas gestionar un cambio de inmediato?</h4>
+            <p>Comunícate con nuestro equipo especializado en posventa y atención al cliente:</p>
+            <p><strong>WhatsApp de Cambios:</strong> +54 9 261 445-5678 &bull; <strong>Email:</strong> postventa@gordiluches.com</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modales requeridos por script.js -->
+  <div class="modal-superposicion" id="modal-carrito">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Carrito de Compras</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-carrito">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-carrito" class="lista-carrito"></div>
+        <div class="pie-modal-carrito">
+          <div class="fila-total">
+            <span>Total:</span>
+            <span class="monto-total" id="precio-total-carrito">$0</span>
+          </div>
+          <button class="boton-accion-completo" id="boton-checkout">Proceder al Pago</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-factura">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal">Comprobante de Factura</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-factura">&times;</button>
+      </div>
+      <div class="cuerpo-modal" id="cuerpo-factura">
+        <div class="caja-factura-detalle" id="detalle-factura"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-superposicion" id="modal-historial">
+    <div class="modal-contenedor">
+      <div class="cabecera-modal">
+        <h3 class="titulo-modal" id="titulo-modal-historial">Historial de Facturas</h3>
+        <button class="boton-cerrar-modal" id="boton-cerrar-historial">&times;</button>
+      </div>
+      <div class="cuerpo-modal">
+        <div id="lista-historial" class="lista-carrito"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
+
+  <!-- Footer Compartido -->
+  <footer class="pie-pagina" id="pie-pagina">
+    <div class="contenido-pie-pagina">
+      <div class="grid-pie-pagina">
+        <div class="columna-pie">
+          <a href="../index.html" class="logo-pie">
+            <span>🧸</span>
+            <span>Gordiluches</span>
+          </a>
+          <p class="descripcion-pie">
+            La tienda oficial de peluches artesanales, suaves y adorables. Calidad premium garantizada para acompañar cada momento especial.
+          </p>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Navegación</h4>
+          <ul class="lista-enlaces-pie">
+            <li><a href="../index.html#seccion-catalogo" class="enlace-pie">Catálogo</a></li>
+            <li><a href="nosotros.html" class="enlace-pie">Sobre nosotros</a></li>
+            <li><a href="auth.html#seccion-autenticacion" class="enlace-pie">Iniciar Sesión</a></li>
+            <li><a href="auth.html#seccion-registro" class="enlace-pie">Registro de Clientes</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Legal</h4>
+          <ul class="lista-enlaces-pie">
+            <li><a href="terminos-condiciones.html" class="enlace-pie">Términos y Condiciones del Servicio</a></li>
+            <li><a href="politica-privacidad.html" class="enlace-pie">Política de Privacidad</a></li>
+            <li><a href="garantia-devoluciones.html" class="enlace-pie enlace-activo-legal">Garantía y Devoluciones</a></li>
+            <li><a href="preguntas-frecuentes.html" class="enlace-pie">Preguntas Frecuentes</a></li>
+          </ul>
+        </div>
+
+        <div class="columna-pie">
+          <h4 class="titulo-columna-pie">Redes Sociales</h4>
+          <ul class="lista-redes-pie">
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+                <span>@Gordiluches_Oficial</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68 6.34 6.34 0 0 0 9.34 22a6.34 6.34 0 0 0 6.33-6.32V8.6a8.28 8.28 0 0 0 4.84 1.55v-3.46z"/></svg></span>
+                <span>@GordiluchesTok</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>
+                <span>/GordiluchesPelucheria</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="item-red-social">
+                <span class="icono-red"><svg class="svg-red-social" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <span>+54 9 261 445-5678</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="barra-inferior-pie">
+        <span>&copy; 2026 Gordiluches Oficial. Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
