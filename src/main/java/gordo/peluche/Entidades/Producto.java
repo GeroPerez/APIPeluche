@@ -13,10 +13,21 @@ public class Producto {
     private float precio;
     private int stock;
     private String imagenUrl;
+    private String dimensiones;
 
     @ManyToMany(mappedBy = "productos")
     @JsonIgnore 
     private List<Compra> compra;
+
+    public Producto(Long id, String nombre, float precio, int stock, String imagenUrl, String dimensiones, List<Compra> compra) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+        this.imagenUrl = imagenUrl;
+        this.dimensiones = dimensiones;
+        this.compra = compra;
+    }
 
     public Producto(Long id, String nombre, float precio, int stock, String imagenUrl, List<Compra> compra) {
         this.id = id;
@@ -68,6 +79,14 @@ public class Producto {
 
     public void setImagenUrl(String imagenUrl) {
         this.imagenUrl = imagenUrl;
+    }
+
+    public String getDimensiones() {
+        return dimensiones;
+    }
+
+    public void setDimensiones(String dimensiones) {
+        this.dimensiones = dimensiones;
     }
 
     public List<Compra> getCompra() {

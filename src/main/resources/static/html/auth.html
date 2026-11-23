@@ -8,6 +8,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('pelucheria_tema_oscuro') === 'true') {
+          document.documentElement.classList.add('tema-oscuro');
+          document.body ? document.body.classList.add('tema-oscuro') : document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('tema-oscuro'); });
+        }
+      } catch(e) {}
+    })();
+  </script>
   <script src="../js/script.js" defer></script>
 </head>
 <body>
@@ -19,6 +29,7 @@
       </a>
       <ul class="enlaces-navegacion" id="enlaces-navegacion">
         <li id="nav-item-catalogo"><a href="../index.html#seccion-catalogo" class="enlace-navegacion">Catálogo</a></li>
+        <li id="nav-item-nosotros"><a href="nosotros.html" class="enlace-navegacion">Sobre nosotros</a></li>
         <li id="nav-item-login"><a href="auth.html#seccion-autenticacion" class="enlace-navegacion">Iniciar Sesión</a></li>
         <li id="nav-item-registro"><a href="auth.html#seccion-registro" class="enlace-navegacion">Registro</a></li>
         <li id="nav-item-facturas"><a href="#" class="enlace-navegacion" id="boton-ver-facturas">Mis Facturas</a></li>
@@ -34,6 +45,13 @@
             <span class="etiqueta-usuario-nav" id="texto-usuario-nav">Usuario</span>
             <button class="boton-cerrar-sesion-nav" id="boton-cerrar-sesion" title="Cerrar Sesión">Salir</button>
           </div>
+        </li>
+        <li id="nav-item-tema">
+          <button class="interruptor-tema" id="boton-alternar-tema" title="Alternar tema claro / oscuro" aria-label="Alternar modo oscuro">
+            <span class="icono-tema sol">☀️</span>
+            <span class="icono-tema luna">🌙</span>
+            <span class="perilla-tema"></span>
+          </button>
         </li>
       </ul>
     </div>
